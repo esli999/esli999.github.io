@@ -3,72 +3,145 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Genmatter — test</title>
+    <meta name="description" content="Genmatter — coming soon." />
+    <title>Genmatter</title>
     <style>
       :root {
-        color-scheme: light dark;
-        --bg: #0f1419;
-        --fg: #e7ecf1;
-        --muted: #8b98a5;
-        --accent: #1d9bf0;
+        color-scheme: dark;
+        --bg-deep: #080b10;
+        --bg-mid: #0f1419;
+        --fg: #f0f4f8;
+        --muted: #8a9ba8;
+        --accent: #5eb0e8;
+        --accent-dim: rgba(94, 176, 232, 0.15);
+        --ring: rgba(94, 176, 232, 0.35);
       }
       @media (prefers-color-scheme: light) {
         :root {
-          --bg: #f7f9fa;
-          --fg: #0f1419;
-          --muted: #536471;
+          color-scheme: light;
+          --bg-deep: #f0f3f7;
+          --bg-mid: #ffffff;
+          --fg: #0d1117;
+          --muted: #5c6b7a;
+          --accent: #0969da;
+          --accent-dim: rgba(9, 105, 218, 0.08);
+          --ring: rgba(9, 105, 218, 0.2);
         }
       }
       * {
         box-sizing: border-box;
       }
+      html {
+        height: 100%;
+      }
       body {
         margin: 0;
-        min-height: 100vh;
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-        background: var(--bg);
+        min-height: 100%;
+        font-family: "SF Pro Display", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        background: radial-gradient(
+            ellipse 120% 80% at 50% -20%,
+            var(--accent-dim),
+            transparent 55%
+          ),
+          linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 45%, var(--bg-deep) 100%);
         color: var(--fg);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 2rem;
+        padding: clamp(1.5rem, 5vw, 3rem);
         text-align: center;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap {
+        max-width: 26rem;
+      }
+      .mark {
+        width: 4.5rem;
+        height: 4.5rem;
+        margin: 0 auto 1.75rem;
+        color: var(--accent);
+      }
+      .mark svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        filter: drop-shadow(0 0 24px var(--ring));
       }
       h1 {
-        font-size: 1.5rem;
+        font-size: clamp(1.75rem, 5vw, 2.125rem);
         font-weight: 600;
-        margin: 0 0 0.5rem;
+        letter-spacing: -0.03em;
+        margin: 0 0 0.35rem;
+        line-height: 1.15;
       }
-      p {
-        color: var(--muted);
-        margin: 0 0 1.5rem;
-        max-width: 28rem;
-        line-height: 1.5;
-      }
-      .badge {
+      .soon {
         display: inline-block;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         font-weight: 600;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.22em;
         text-transform: uppercase;
         color: var(--accent);
-        margin-bottom: 1rem;
+        margin-bottom: 1.25rem;
       }
-      img {
-        width: min(280px, 80vw);
-        height: auto;
-        border-radius: 12px;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+      .lede {
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.65;
+        margin: 0 0 2rem;
+      }
+      .rule {
+        height: 1px;
+        margin: 0 0 1.5rem;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--muted) 50%,
+          transparent
+        );
+        opacity: 0.28;
+      }
+      footer {
+        font-size: 0.8125rem;
+        color: var(--muted);
+        opacity: 0.85;
+      }
+      footer a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
       }
     </style>
   </head>
   <body>
-    <span class="badge">Project site</span>
-    <h1>Genmatter test page</h1>
-    <p>
-      If you see this page and the image below, static hosting is working.
-    </p>
-    <img src="test-card.svg" alt="Test placeholder graphic" width="280" height="180" />
+    <div class="wrap">
+      <div class="mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="22" r="5" fill="currentColor" opacity="0.9" />
+          <circle cx="38" cy="18" r="3.5" fill="currentColor" opacity="0.55" />
+          <circle cx="46" cy="34" r="4" fill="currentColor" opacity="0.75" />
+          <circle cx="28" cy="40" r="3" fill="currentColor" opacity="0.45" />
+          <circle cx="18" cy="44" r="2.5" fill="currentColor" opacity="0.35" />
+          <path
+            d="M22 24c8 6 14 2 22 10M26 38c6-4 12-2 18-8"
+            stroke="currentColor"
+            stroke-width="1.25"
+            stroke-linecap="round"
+            opacity="0.35"
+          />
+        </svg>
+      </div>
+      <p class="soon">Coming soon</p>
+      <h1>Genmatter</h1>
+      <p class="lede">
+        We are preparing something new here. Check back shortly for updates.
+      </p>
+      <div class="rule"></div>
+      <footer>
+        <a href="/">esli999</a>
+      </footer>
+    </div>
   </body>
 </html>
