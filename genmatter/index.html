@@ -6,12 +6,12 @@
   <meta property="og:title" content="GenMatter: Perceiving Physical Objects with Generative Matter Models">
   <meta property="og:description" content="A unified generative framework for motion-based perception grounded in principles of human vision.">
   <meta property="og:url" content="https://esli999.github.io/genmatter/">
-  <meta property="og:image" content="https://esli999.github.io/genmatter/static/images/genmatter_marquee.png">
+  <meta property="og:image" content="https://esli999.github.io/genmatter/static/images/genmatter_splash_results.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:title" content="GenMatter: Perceiving Physical Objects with Generative Matter Models">
   <meta name="twitter:description" content="GenMatter groups motion and appearance cues into particles and clusters to recover moving physical objects from video.">
-  <meta name="twitter:image" content="https://esli999.github.io/genmatter/static/images/genmatter_marquee.png">
+  <meta name="twitter:image" content="https://esli999.github.io/genmatter/static/images/genmatter_splash_results.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="keywords" content="computer vision, probabilistic inference, motion perception, object segmentation, structure from motion, point tracking, generative models">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,662 +21,555 @@
   <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700|Noto+Sans:400,700|Castoro:400,700" rel="stylesheet">
 
   <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
-
-  <style>
-    :root {
-      --genmatter-blue: #2468b2;
-      --genmatter-ink: #1f2a37;
-      --genmatter-soft: #eef3f8;
-      --genmatter-border: #d9e3ee;
-    }
-
-    .publication-title {
-      font-weight: 700;
-      color: #243447;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-    }
-
-    .hero-shell {
-      background: linear-gradient(135deg, #f6f8fb 0%, #e8edf3 100%);
-    }
-
-    .hero-card,
-    .section-card,
-    .media-card {
-      background: #fff;
-      border: 1px solid var(--genmatter-border);
-      border-radius: 12px;
-      box-shadow: 0 10px 24px rgba(31, 42, 55, 0.08);
-    }
-
-    .hero-card {
-      padding: 2.5rem 2rem;
-    }
-
-    .button.is-dark {
-      background-color: #243447;
-      transition: all 0.25s ease;
-    }
-
-    .button.is-dark:hover {
-      background-color: #2f455c;
-      transform: translateY(-1px);
-    }
-
-    .section.hero.is-light {
-      background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
-    }
-
-    .title.is-3 {
-      position: relative;
-      display: block;
-      text-align: center;
-      padding-bottom: 0.8rem;
-    }
-
-    .title.is-3::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      width: 120px;
-      height: 2px;
-      transform: translateX(-50%);
-      background-color: var(--genmatter-blue);
-      border-radius: 4px;
-    }
-
-    .section-card {
-      padding: 1.75rem;
-    }
-
-    .teaser-figure,
-    .figure-frame {
-      border-radius: 10px;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
-      width: 100%;
-      display: block;
-    }
-
-    .caption-text {
-      line-height: 1.7;
-      font-size: 1.02rem;
-      color: #334155;
-    }
-
-    .metrics-note {
-      color: #51606f;
-      font-size: 0.98rem;
-      line-height: 1.7;
-    }
-
-    .results-carousel,
-    .media-carousel {
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
-      border-radius: 12px;
-      overflow: hidden;
-      background: #fff;
-      padding: 0 2.75rem;
-      position: relative;
-    }
-
-    .media-card {
-      padding: 1rem;
-    }
-
-    .section-card img,
-    .media-card video,
-    .media-card img {
-      width: 100%;
-      border-radius: 10px;
-      display: block;
-    }
-
-    .media-frame {
-      aspect-ratio: 16 / 9;
-      width: 100%;
-      overflow: hidden;
-      border-radius: 10px;
-      background: #000;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
-    }
-
-    .media-frame.is-tall {
-      aspect-ratio: 4 / 5;
-    }
-
-    .media-frame img,
-    .media-frame video {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: 0;
-    }
-
-    .media-card p {
-      margin-top: 0.9rem;
-      color: #475569;
-      line-height: 1.6;
-    }
-
-    .stacked-media {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .experiment-pillars .column {
-      display: flex;
-    }
-
-    .pillar {
-      padding: 1.25rem;
-      border-radius: 12px;
-      border: 1px solid var(--genmatter-border);
-      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-      box-shadow: 0 8px 18px rgba(36, 104, 178, 0.06);
-      width: 100%;
-    }
-
-    .pillar h3 {
-      color: var(--genmatter-ink);
-      font-size: 1.15rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .pillar p {
-      color: #51606f;
-      line-height: 1.65;
-      margin: 0;
-    }
-
-    .footer {
-      background-color: #243447;
-      color: #eef3f8;
-    }
-
-    .footer a {
-      color: #8ec5ff;
-    }
-
-    .footer a:hover {
-      color: #c3e0ff;
-    }
-
-    .author-block {
-      display: inline-block;
-      margin-right: 0.3rem;
-    }
-
-    .publication-authors,
-    .publication-venue {
-      color: #314155;
-    }
-
-    .venue-badge {
-      display: inline-block;
-      margin-top: 0.8rem;
-      padding: 0.35rem 0.9rem;
-      border-radius: 999px;
-      background: #e8f1fb;
-      color: var(--genmatter-blue);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-
-    .summary-box {
-      background: var(--genmatter-soft);
-      border-left: 4px solid var(--genmatter-blue);
-      border-radius: 10px;
-      padding: 1rem 1.1rem;
-      color: #314155;
-      line-height: 1.7;
-    }
-
-    .carousel .item {
-      font-size: 1rem;
-      padding: 0.75rem 0;
-      display: flex;
-      align-items: stretch;
-    }
-
-    .carousel .item > div {
-      width: 100%;
-    }
-
-    .results-carousel .section-card,
-    .media-carousel .media-card {
-      min-height: 100%;
-    }
-
-    .slider-navigation-previous,
-    .slider-navigation-next {
-      background: rgba(36, 52, 71, 0.9);
-      border: none;
-      color: #fff;
-      width: 2.8rem;
-      height: 2.8rem;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 10;
-    }
-
-    .slider-navigation-previous {
-      left: 0.5rem;
-    }
-
-    .slider-navigation-next {
-      right: 0.5rem;
-    }
-
-    .slider-pagination {
-      margin-top: 0.5rem;
-    }
-
-    .media-carousel .media-card p,
-    .results-carousel .section-card h2 {
-      min-height: 5.5rem;
-    }
-
-    .aligned-columns {
-      align-items: stretch;
-    }
-
-    .aligned-columns > .column {
-      display: flex;
-      flex-direction: column;
-    }
-
-    @media screen and (max-width: 768px) {
-      .hero-card {
-        padding: 2rem 1.25rem;
-      }
-
-      .title.is-1 {
-        font-size: 2.1rem;
-      }
-
-      .section-card {
-        padding: 1.2rem;
-      }
-
-      .results-carousel,
-      .media-carousel {
-        padding: 0 2.2rem;
-      }
-
-      .media-carousel .media-card p,
-      .results-carousel .section-card h2 {
-        min-height: 0;
-      }
-
-      .stacked-media {
-        margin-top: 1.25rem;
-      }
-    }
-  </style>
 </head>
 <body>
 
-  <section class="hero hero-shell">
-    <div class="hero-body">
+  <header class="site-hero">
+    <div class="container is-max-widescreen">
+      <div class="hero-copy has-text-centered">
+        <div class="venue-badge">CVPR 2026</div>
+        <h1 class="title publication-title">GenMatter: Perceiving Physical Objects with Generative Matter Models</h1>
+
+        <div class="publication-authors">
+          <span class="author-block">Eric Li<sup>1,*</sup></span>
+          <span class="author-block">Arijit Dasgupta<sup>1</sup></span>
+          <span class="author-block">Yoni Friedman<sup>1</sup></span>
+          <span class="author-block">Mathieu Huot<sup>2</sup></span>
+          <span class="author-block">Vikash Mansinghka<sup>2</sup></span>
+          <span class="author-block">Thomas O'Connell<sup>2</sup></span>
+          <span class="author-block">William T. Freeman<sup>1</sup></span>
+          <span class="author-block">Joshua B. Tenenbaum<sup>1,2</sup></span>
+        </div>
+
+        <div class="publication-affiliations">
+          <span><sup>1</sup>MIT CSAIL</span>
+          <span><sup>2</sup>MIT BCS</span>
+          <span><sup>*</sup><a href="mailto:esli@mit.edu">esli@mit.edu</a></span>
+        </div>
+
+        <div class="publication-links">
+          <a href="static/pdfs/genmatter_cvpr_2026.pdf" target="_blank" class="button is-dark">
+            <span class="icon"><i class="fas fa-file-pdf"></i></span>
+            <span>Paper</span>
+          </a>
+          <a href="https://github.com/esli999/GenMatter" target="_blank" class="button is-dark">
+            <span class="icon"><i class="fab fa-github"></i></span>
+            <span>Code</span>
+          </a>
+        </div>
+      </div>
+
+      <figure class="hero-figure">
+        <img src="static/images/genmatter_splash_results.png" alt="Frame-by-frame GenMatter results across RGB video examples">
+        <figcaption>
+          GenMatter is a generative model of moving matter. Conditioned on motion and appearance features extracted from video, inference groups observations into particles, small Gaussians representing local matter, and clusters, coherently and independently moveable physical entities. The same framework supports motion-based perception across random dots, camouflaged structure-from-motion scenes, and naturalistic RGB video.
+        </figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <main>
+    <section class="section page-section section-soft">
       <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <div class="hero-card">
-              <h1 class="title is-1 publication-title">GenMatter: Perceiving Physical Objects with Generative Matter Models</h1>
-              <div class="publication-venue is-size-5">
-                <span class="venue-badge">CVPR 2026</span>
-              </div>
-              <div class="is-size-5 publication-authors" style="margin-top: 1.25rem;">
-                <span class="author-block">Eric Li<sup>1,*</sup>,</span>
-                <span class="author-block">Arijit Dasgupta<sup>1</sup>,</span>
-                <span class="author-block">Yoni Friedman<sup>1</sup>,</span>
-                <span class="author-block">Mathieu Huot<sup>2</sup>,</span>
-                <span class="author-block">Vikash Mansinghka<sup>2</sup>,</span>
-                <span class="author-block">Thomas O'Connell<sup>2</sup>,</span>
-                <span class="author-block">William T. Freeman<sup>1</sup>,</span>
-                <span class="author-block">Joshua B. Tenenbaum<sup>1,2</sup></span>
-              </div>
-              <div class="is-size-5 publication-authors" style="margin-top: 0.85rem;">
-                <span class="author-block"><sup>1</sup>MIT CSAIL</span>
-                <span class="author-block"><sup>2</sup>MIT BCS</span>
-              </div>
-              <div class="is-size-6 publication-authors" style="margin-top: 0.55rem;">
-                <span class="author-block"><sup>*</sup>Corresponding author: <a href="mailto:esli@mit.edu">esli@mit.edu</a></span>
-              </div>
-
-              <div class="publication-links" style="margin-top: 1.6rem;">
-                <span class="link-block">
-                  <a href="static/pdfs/genmatter_cvpr_2026.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                    </span>
-                    <span>Paper</span>
-                  </a>
-                </span>
-
-                <span class="link-block">
-                  <a href="https://github.com/esli999/GenMatter" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-              </div>
-            </div>
-          </div>
+        <h2 class="section-title">Abstract</h2>
+        <div class="paper-text">
+          <p>
+            Human visual perception offers valuable insights for understanding computational principles of motion-based scene interpretation. Humans robustly detect and segment moving entities that constitute independently moveable chunks of matter, whether observing sparse moving dots, textured surfaces, or naturalistic scenes. In contrast, existing computer vision systems lack a unified approach that works across these diverse settings. Inspired by principles of human perception, we propose a generative model that hierarchically groups low-level motion cues and high-level appearance features into particles (small Gaussians representing local matter), and groups particles into clusters capturing coherently and independently moveable physical entities.
+          </p>
+          <p>
+            We develop a hardware-accelerated inference algorithm based on parallelized block Gibbs sampling to recover stable particle motion and groupings. Our model operates on different kinds of inputs (random dots, stylized textures, or naturalistic RGB video), enabling it to work across settings where biological vision succeeds but existing computer vision approaches do not. We validate this unified framework across three domains: on 2D <em>random dot kinematograms</em>, our approach captures human object perception including graded uncertainty across ambiguous conditions; on a Gestalt-inspired dataset of camouflaged rotating objects, our approach recovers correct 3D structure from motion and thereby accurate 2D object segmentation; and on naturalistic RGB videos, our model tracks the moving 3D matter that makes up deforming objects, enabling robust object-level scene understanding. This work thus establishes a general framework for motion-based perception grounded in principles of human vision.
+          </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="hero teaser">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
-        <div class="section-card">
-          <img src="static/images/genmatter_marquee.png" alt="GenMatter marquee figure" class="teaser-figure">
-          <h2 class="subtitle has-text-centered caption-text" style="margin-top: 1.35rem;">
-            <strong>GenMatter</strong> is a generative model of moving matter. Conditioned on motion and appearance features extracted from video, inference groups observations into <strong>particles</strong>, then into <strong>clusters</strong> that capture coherently and independently moveable physical entities, yielding stable motion estimates and object-level structure across random dots, camouflaged scenes, and naturalistic RGB video.
-          </h2>
+    <section class="section page-section">
+      <div class="container is-max-desktop">
+        <h2 class="section-title">Motion-Based Perception Across Domains</h2>
+        <div class="paper-prose">
+          <p>
+            Human vision robustly segments the world into independently moveable chunks of matter across very different visual conditions: sparse moving dots with no appearance cues, camouflaged surfaces where texture is uninformative, and naturalistic scenes containing deforming objects. Existing vision systems are typically specialized for one of these regimes, while GenMatter uses a single probabilistic model and inference procedure across all three.
+          </p>
+          <p>
+            The paper evaluates this claim in three settings. In random dot kinematograms, the model must explain object membership from motion alone and capture graded human uncertainty across ambiguous dot correspondences. In Gestalt-inspired camouflaged structure-from-motion videos, foreground and background share the same texture, so segmentation depends on recovering 3D structure from motion. In naturalistic RGB video, monocular depth, optical flow, and DINO features are lifted into a 3D representation that can track the moving matter making up deforming objects.
+          </p>
+          <p>
+            These experiments test two complementary objectives: whether the same generative matter model can support motion-based perception across settings where human vision succeeds, and whether its inferred particles and clusters provide useful object-level structure for segmentation and tracking.
+          </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="section-card content has-text-justified">
-            <p class="caption-text">
-              Human visual perception offers valuable insights for understanding computational principles of motion-based scene interpretation. Humans robustly detect and segment moving entities that constitute independently moveable chunks of matter, whether observing sparse moving dots, textured surfaces, or naturalistic scenes. In contrast, existing computer vision systems lack a unified approach that works across these diverse settings. Inspired by principles of human perception, we propose a generative model that hierarchically groups low-level motion cues and high-level appearance features into particles, and groups particles into clusters capturing coherently and independently moveable physical entities.
-            </p>
-            <p class="caption-text">
-              We develop a hardware-accelerated inference algorithm based on parallelized block Gibbs sampling to recover stable particle motion and groupings. Across random dot kinematograms, Gestalt-inspired camouflaged scenes, and naturalistic RGB video, GenMatter recovers graded uncertainty, accurate segmentation, and robust object-level representations in settings where biological vision succeeds but existing computer vision systems remain specialized.
-            </p>
-          </div>
+    <section class="section page-section section-soft">
+      <div class="container is-max-widescreen">
+        <h2 class="section-title">Generative Matter Model and Inference</h2>
+        <figure class="figure-panel method-figure">
+          <img src="static/images/genmatter_marquee.png" alt="GenMatter inference pipeline">
+          <figcaption>
+            RGB video is preprocessed to extract dense depth and optical flow, lifting each pixel to a moving 3D point. The generative model represents a scene as a hierarchy of clusters and particles that emit moving 3D points: clusters generate particles, particles generate observations, and motion is represented at the point, particle, and cluster layers. Inference conditions on the observed points and inverts this hierarchy to recover particles and clusters that explain the observed moving matter.
+          </figcaption>
+        </figure>
+        <div class="paper-prose method-prose">
+          <h3>Generative matter model</h3>
+          <p>
+            GenMatter is a two-level hierarchical generative model for structured motion. At the lower level, data points are grouped into particles, where each particle is a local Gaussian representing a small piece of moving matter. At the higher level, particles are grouped into clusters, which represent coherent, independently moveable physical entities.
+          </p>
+          <h3>Particles, clusters, and motion</h3>
+          <p>
+            Each cluster is parameterized by a Gaussian over space and a rigid-body transformation. Particles inherit this cluster-level motion while retaining their own spatial extent and velocity covariance, giving the model enough flexibility to explain both rigid and deformable objects. This hierarchy lets local matter move with a coherent entity while allowing within-cluster slack for non-rigid motion.
+          </p>
+          <h3>Inference</h3>
+          <p>
+            Inference uses parallelized blocked Gibbs sampling to update data-point assignments, particle parameters, cluster assignments, and cluster transformations. Conditional independence in the hierarchy allows many variables at the data-point, particle, and cluster levels to be sampled in parallel, and the same inference procedure is used across random dots, camouflaged structure-from-motion stimuli, and RGB videos with optional image features.
+          </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Why GenMatter</h2>
-      <div class="columns experiment-pillars">
-        <div class="column">
-          <div class="pillar">
-            <h3>One model, three perception regimes</h3>
-            <p>GenMatter handles ambiguous random-dot motion, camouflaged structure-from-motion stimuli, and naturalistic RGB video with the same structured probabilistic core.</p>
-          </div>
-        </div>
-        <div class="column">
-          <div class="pillar">
-            <h3>Particles and clusters</h3>
-            <p>Local Gaussians represent matter at the particle level, while a higher-level clustering layer captures independently moveable entities and soft rigidity constraints.</p>
-          </div>
-        </div>
-        <div class="column">
-          <div class="pillar">
-            <h3>Inference over feed-forward shortcuts</h3>
-            <p>Parallel block Gibbs sampling lets the model integrate motion, geometry, and appearance online instead of relying on task-specific supervised training.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="hero is-small">
-    <div class="hero-body">
-      <div class="container">
-        <h2 class="title is-3 has-text-centered">Model and Inference</h2>
-        <div id="method-carousel" class="carousel results-carousel">
-          <div class="item">
-            <div class="section-card">
-              <img src="static/images/genmatter_marquee.png" alt="GenMatter inference pipeline" class="figure-frame">
-              <h2 class="subtitle has-text-centered caption-text" style="margin-top: 1rem;">
-                The full inference pipeline lifts RGB video into motion-conditioned observations, then uses the GenMatter hierarchy to infer particles and clusters that explain moving matter in a scene.
-              </h2>
-            </div>
-          </div>
-          <div class="item">
-            <div class="section-card">
-              <img src="static/images/genmatter_vs_arap.png" alt="GenMatter versus ARAP" class="figure-frame">
-              <h2 class="subtitle has-text-centered caption-text" style="margin-top: 1rem;">
-                Unlike fixed-radius ARAP regularization, GenMatter jointly infers object-centric groupings and rigid motion, allowing discontinuous motion boundaries to emerge from the posterior.
-              </h2>
-            </div>
-          </div>
-          <div class="item">
-            <div class="section-card">
-              <img src="static/images/genmatter_camel_particle_viz.png" alt="Camel particle visualization" class="figure-frame">
-              <h2 class="subtitle has-text-centered caption-text" style="margin-top: 1rem;">
-                Motion, geometry, and appearance cues combine into a unified particle representation, revealing how the model decomposes deforming naturalistic objects into coherent moving matter.
-              </h2>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Random Dot Kinematograms</h2>
-      <div class="columns is-variable is-6 aligned-columns">
-        <div class="column is-7">
-          <div class="section-card">
-            <img src="static/images/genmatter_psychophysics.png" alt="GenMatter psychophysics figure" class="figure-frame">
-            <p class="metrics-note" style="margin-top: 1rem;">
-              On 27 random-dot stimuli, GenMatter closely matches human same-object judgments and captures graded perceptual uncertainty across both easy and ambiguous conditions.
-            </p>
-          </div>
-        </div>
-        <div class="column">
-          <div class="stacked-media">
-            <div class="media-card">
-              <div class="media-frame">
-                <img src="static/images/genmatter_rdk_fam_1.gif" alt="Random dot kinematogram familiarization stimulus">
+    <section class="section page-section">
+      <div class="container is-max-widescreen">
+        <h2 class="section-title">Random Dot Kinematograms</h2>
+        <p class="section-lede">
+          We created 27 RDK stimuli from 9 rigid-body scenes and collected binary same-object judgments from 150 participants. GenMatter was run on 50 random seeds per stimulus to match the human sample size.
+        </p>
+        <figure class="figure-panel">
+          <img src="static/images/genmatter_psychophysics.png" alt="GenMatter psychophysics results">
+          <figcaption>
+            GenMatter closely tracks human perceptual judgments across 27 random dot stimuli (r<sup>2</sup> = 0.86, t(25) = 12.4, p &lt; 0.001), capturing graded uncertainty across easy and ambiguous conditions.
+          </figcaption>
+        </figure>
+        <div class="carousel-shell" data-carousel>
+          <button type="button" class="carousel-arrow carousel-prev" data-carousel-prev aria-label="Previous RDK example"><span aria-hidden="true">&larr;</span></button>
+          <div class="example-carousel" aria-label="Random dot kinematogram examples">
+            <article class="carousel-slide">
+              <div class="paired-media">
+                <figure class="media-panel">
+                  <div class="media-frame">
+                    <img src="static/images/rdk_examples/s1_c1.gif" alt="Random dot kinematogram condition c1">
+                  </div>
+                  <figcaption>RDK stimulus c1.</figcaption>
+                </figure>
+                <figure class="media-panel">
+                  <div class="media-frame">
+                    <video autoplay muted loop playsinline controls>
+                      <source src="static/videos/rdk_examples/c1_inference.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <figcaption>GenMatter inference on c1.</figcaption>
+                </figure>
               </div>
-              <p>A representative RDK stimulus where sparse motion cues alone must support object grouping.</p>
-            </div>
-            <div class="media-card">
-              <div class="media-frame">
-                <video autoplay muted loop playsinline controls>
-                  <source src="static/videos/genmatter_rdk_c1_inference.mp4" type="video/mp4">
-                </video>
+              <p class="carousel-caption">Original random-dot stimulus paired with the inferred posterior. Dots are colored by inferred cluster assignment, showing how the model groups sparse motion into moving matter.</p>
+            </article>
+            <article class="carousel-slide">
+              <div class="paired-media">
+                <figure class="media-panel">
+                  <div class="media-frame">
+                    <img src="static/images/rdk_examples/s1_c2.gif" alt="Random dot kinematogram condition c2">
+                  </div>
+                  <figcaption>RDK stimulus c2.</figcaption>
+                </figure>
+                <figure class="media-panel">
+                  <div class="media-frame">
+                    <video autoplay muted loop playsinline controls>
+                      <source src="static/videos/rdk_examples/c2_inference.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <figcaption>GenMatter inference on c2.</figcaption>
+                </figure>
               </div>
-              <p>Example inference video showing the model’s recovered moving structure under an easier motion condition.</p>
-            </div>
+              <p class="carousel-caption">Each RDK asks whether red and green probe dots belong to the same underlying object, using motion patterns rather than form cues.</p>
+            </article>
+            <article class="carousel-slide">
+              <div class="paired-media">
+                <figure class="media-panel">
+                  <div class="media-frame">
+                    <img src="static/images/rdk_examples/s1_c9.gif" alt="Random dot kinematogram condition c9">
+                  </div>
+                  <figcaption>RDK stimulus c9.</figcaption>
+                </figure>
+                <figure class="media-panel">
+                  <div class="media-frame">
+                    <video autoplay muted loop playsinline controls>
+                      <source src="static/videos/rdk_examples/c9_inference.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <figcaption>GenMatter inference on c9.</figcaption>
+                </figure>
+              </div>
+              <p class="carousel-caption">GenMatter uses latent particles and clusters to recover object-level groupings from ambiguous dot correspondences.</p>
+            </article>
           </div>
+          <button type="button" class="carousel-arrow carousel-next" data-carousel-next aria-label="Next RDK example"><span aria-hidden="true">&rarr;</span></button>
         </div>
       </div>
-      <div class="summary-box" style="margin-top: 1.25rem;">
-        GenMatter uses a 2D inference pipeline on image-computable motion features, reproducing human behavior far better than particle-only ablations or specialized motion-segmentation baselines in this sparse and ambiguous regime.
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Camouflaged Gestalt Segmentation</h2>
-      <div class="columns is-variable is-6 aligned-columns">
-        <div class="column is-7">
-          <div class="section-card">
-            <img src="static/images/genmatter_gestalt_comparison.png" alt="Gestalt comparison figure" class="figure-frame">
-            <p class="metrics-note" style="margin-top: 1rem;">
-              In camouflaged rotating scenes where static appearance is uninformative, GenMatter recovers 3D structure from motion and produces stronger segmentation than supervised baselines.
-            </p>
-          </div>
+    <section class="section page-section section-soft">
+      <div class="container is-max-widescreen">
+        <h2 class="section-title">Structure from Motion in Gestalt Stimuli</h2>
+        <p class="section-lede">
+          We evaluate GenMatter on 140 short videos of rotating 3D objects with foreground and background textures matched. Static frames provide little segmentation information, but motion supports 3D structure from motion.
+        </p>
+        <figure class="figure-panel">
+          <img src="static/images/genmatter_gestalt_comparison.png" alt="Qualitative comparison on camouflaged stimuli">
+          <figcaption>
+            GenMatter correctly segments the moving object in camouflaged stimuli, while FlowSAM degrades over time and SegAnyMo fails to detect an object in this example.
+          </figcaption>
+        </figure>
+        <div class="table-block">
+          <p class="table-caption">
+            <strong>Table 1.</strong> Summary statistics across 140 Gestalt videos. Values are mean [95% bootstrap CI].
+          </p>
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Accuracy</th>
+                <th>Jaccard</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SegAnyMo</td>
+                <td>0.33 [0.28, 0.37]</td>
+                <td>0.26 [0.22, 0.31]</td>
+              </tr>
+              <tr>
+                <td>FlowSAM</td>
+                <td>0.87 [0.85, 0.88]</td>
+                <td>0.67 [0.63, 0.70]</td>
+              </tr>
+              <tr>
+                <td>GenMatter</td>
+                <td><strong>0.94 [0.93, 0.94]</strong></td>
+                <td><strong>0.72 [0.70, 0.74]</strong></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="column">
-          <div class="stacked-media">
-            <div class="media-card">
-              <div class="media-frame">
-                <video autoplay muted loop playsinline controls>
-                  <source src="static/videos/genmatter_gestalt_scene_00.mp4" type="video/mp4">
-                </video>
-              </div>
-              <p>Rendered Gestalt stimulus with matched foreground and background texture.</p>
-            </div>
-            <div class="media-card">
-              <div class="media-frame">
-                <video autoplay muted loop playsinline controls>
-                  <source src="static/videos/genmatter_gestalt_segmentation_scene_00.mp4" type="video/mp4">
-                </video>
-              </div>
-              <p>Posterior segmentation video illustrating how coherent matter structure emerges over time.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="columns is-variable is-4" style="margin-top: 0.5rem;">
-        <div class="column">
-          <div class="media-card">
-            <div class="media-frame is-tall">
-              <img src="static/images/genmatter_gestalt_per_scene_acc.png" alt="Gestalt accuracy per scene">
-            </div>
-            <p>Per-scene accuracy stays strong across the full benchmark rather than only a narrow set of examples.</p>
-          </div>
-        </div>
-        <div class="column">
-          <div class="media-card">
-            <div class="media-frame is-tall">
-              <img src="static/images/genmatter_gestalt_per_texture_acc.png" alt="Gestalt accuracy per texture">
-            </div>
-            <p>The improvement is consistent across texture patterns, showing robustness to camouflage rather than overfitting to appearance cues.</p>
-          </div>
-        </div>
-        <div class="column">
-          <div class="media-card">
-            <div class="media-frame is-tall">
-              <video autoplay muted loop playsinline controls>
-                <source src="static/videos/genmatter_gestalt_scene_16.mp4" type="video/mp4">
-              </video>
-            </div>
-            <p>A second qualitative example showing generalization across geometry and texture settings.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Naturalistic RGB Video</h2>
-      <div class="columns is-variable is-6">
-        <div class="column is-5">
-          <div class="section-card">
-            <img src="static/images/genmatter_camel_particle_viz.png" alt="GenMatter RGB particle visualization" class="figure-frame">
-            <p class="metrics-note" style="margin-top: 1rem;">
-              On naturalistic video, GenMatter builds 3D particle representations that match supervised trackers on projected 2D metrics while remaining grounded in a reusable probabilistic scene model.
-            </p>
-          </div>
-        </div>
-        <div class="column is-7">
-          <div id="rgb-carousel" class="carousel media-carousel">
-            <div class="item">
-              <div class="media-card">
+        <div class="carousel-shell carousel-shell-narrow" data-carousel>
+          <button type="button" class="carousel-arrow carousel-prev" data-carousel-prev aria-label="Previous Gestalt posterior"><span aria-hidden="true">&larr;</span></button>
+          <div class="example-carousel single-carousel" aria-label="Gestalt posterior segmentation examples">
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
-                    <source src="static/videos/genmatter_rgb_camel.mp4" type="video/mp4">
+                    <source src="static/videos/gestalt_examples/segmentation_posteriors_scene_00000_texture_00.mp4" type="video/mp4">
                   </video>
                 </div>
-                <p>Camel sequence showing coherent particle assignment across articulated, textured matter.</p>
-              </div>
-            </div>
-            <div class="item">
-              <div class="media-card">
+                <figcaption>Posterior segmentation, texture 00.</figcaption>
+              </figure>
+              <p class="carousel-caption">Posterior segmentations show the inferred object mask over time. Because foreground and background share the same texture, the recovered object boundary comes from motion-based 3D structure rather than static appearance contrast.</p>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
-                    <source src="static/videos/genmatter_rgb_cloth_bag.mp4" type="video/mp4">
+                    <source src="static/videos/gestalt_examples/segmentation_posteriors_scene_00000_texture_07.mp4" type="video/mp4">
                   </video>
                 </div>
-                <p>Cloth bag example illustrating how local particles support highly deformable motion.</p>
-              </div>
-            </div>
-            <div class="item">
-              <div class="media-card">
+                <figcaption>Posterior segmentation, texture 07.</figcaption>
+              </figure>
+              <p class="carousel-caption">The same inference procedure is applied across matched texture patterns, extracting a MAP segmentation from samples over the latent matter representation.</p>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
-                    <source src="static/videos/genmatter_rgb_manta_ray.mp4" type="video/mp4">
+                    <source src="static/videos/gestalt_examples/segmentation_posteriors_scene_00000_texture_13.mp4" type="video/mp4">
                   </video>
                 </div>
-                <p>Large nonrigid motion remains grouped into stable object-level structure over time.</p>
-              </div>
-            </div>
-            <div class="item">
-              <div class="media-card">
+                <figcaption>Posterior segmentation, texture 13.</figcaption>
+              </figure>
+              <p class="carousel-caption">GenMatter assigns probability mass to contiguous matter regions even when texture is deliberately uninformative, using motion to recover the rotating object.</p>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
-                    <source src="static/videos/genmatter_rgb_purple_jacket.mp4" type="video/mp4">
+                    <source src="static/videos/gestalt_examples/segmentation_posteriors_scene_00000_texture_16.mp4" type="video/mp4">
                   </video>
                 </div>
-                <p>Appearance features, motion, and depth cues combine to preserve identity in realistic scenes.</p>
-              </div>
-            </div>
+                <figcaption>Posterior segmentation, texture 16.</figcaption>
+              </figure>
+              <p class="carousel-caption">The benchmark contains 140 videos: 20 object geometries rendered with 7 foreground-background matched texture patterns.</p>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline controls>
+                    <source src="static/videos/gestalt_examples/segmentation_posteriors_scene_00000_texture_21.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>Posterior segmentation, texture 21.</figcaption>
+              </figure>
+              <p class="carousel-caption">Static frames provide little segmentation information, but the model's inferred moving particles and clusters make the object boundary explicit over time.</p>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline controls>
+                    <source src="static/videos/gestalt_examples/segmentation_posteriors_scene_00000_texture_22.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>Posterior segmentation, texture 22.</figcaption>
+              </figure>
+              <p class="carousel-caption">GenMatter scores higher than FlowSAM and SegAnyMo on both per-pixel accuracy and Jaccard, with more consistent performance across stimuli.</p>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline controls>
+                    <source src="static/videos/gestalt_examples/segmentation_posteriors_scene_00000_texture_25.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>Posterior segmentation, texture 25.</figcaption>
+              </figure>
+              <p class="carousel-caption">Across textures, segmentation emerges from the posterior over moving matter rather than from a feed-forward appearance mask.</p>
+            </article>
           </div>
+          <button type="button" class="carousel-arrow carousel-next" data-carousel-next aria-label="Next Gestalt posterior"><span aria-hidden="true">&rarr;</span></button>
         </div>
       </div>
-      <div class="summary-box" style="margin-top: 1.25rem;">
-        The same inference machinery scales from abstract psychophysics stimuli to RGB video by conditioning on richer observations rather than replacing the model itself, giving GenMatter a kind of cross-domain generality that most existing systems lack.
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title is-3 has-text-centered">BibTeX</h2>
-      <div class="section-card">
-        <pre><code>@inproceedings{li2026genmatter,
+    <section class="section page-section">
+      <div class="container is-max-widescreen">
+        <h2 class="section-title">3D Particle Representations from RGB Video</h2>
+        <p class="section-lede">
+          On TAP-Vid-DAVIS videos, GenMatter conditions on monocular depth, optical flow, and DINO features. Its projected 3D particle representation matches CoTracker3 on matter-weighted Jaccard without task-specific pretraining.
+        </p>
+        <figure class="figure-panel rgb-particle-figure">
+          <img src="static/images/genmatter_camel_particle_viz.png" alt="GenMatter RGB particle visualization">
+          <figcaption>
+            Per-point particle assignment visualization. Each data point is colored by its assigned particle's RGB color, motion direction, and appearance features; Gaussian particles are shown in the second row. The distinct patterns across motion and appearance show how GenMatter integrates complementary observations into a faithful matter representation.
+          </figcaption>
+        </figure>
+        <div class="table-block">
+          <p class="table-caption">
+            <strong>Tracking performance on TAP-Vid DAVIS.</strong> Values are mean [95% bootstrap CI].
+          </p>
+          <table class="results-table rgb-table">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>CoTracker3</th>
+                <th>GenMatter</th>
+                <th>GenMatter (abl.)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>J<sub>m</sub> (SAM)</td>
+                <td>0.78 [0.69, 0.87]</td>
+                <td><strong>0.79 [0.73, 0.84]</strong></td>
+                <td>0.69 [0.61, 0.77]</td>
+              </tr>
+              <tr>
+                <td>J<sub>m</sub> (GT)</td>
+                <td><strong>0.78 [0.69, 0.87]</strong></td>
+                <td>0.77 [0.73, 0.84]</td>
+                <td>0.68 [0.58, 0.73]</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="carousel-shell carousel-shell-narrow" data-carousel>
+          <button type="button" class="carousel-arrow carousel-prev" data-carousel-prev aria-label="Previous RGB example"><span aria-hidden="true">&larr;</span></button>
+          <div class="example-carousel single-carousel" aria-label="Naturalistic RGB video examples">
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline controls>
+                    <source src="static/videos/rgb_3d_inference/genmatter_camel_viz_compressed.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>Camel sequence.</figcaption>
+              </figure>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline controls>
+                    <source src="static/videos/rgb_3d_inference/genmatter_cloth_bag_viz_compressed.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>Cloth bag sequence.</figcaption>
+              </figure>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline controls>
+                    <source src="static/videos/rgb_3d_inference/genmatter_cloth_viz_compressed.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>Cloth sequence.</figcaption>
+              </figure>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline controls>
+                    <source src="static/videos/rgb_3d_inference/genmatter_eagle_viz_compressed.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>Eagle sequence.</figcaption>
+              </figure>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline controls>
+                    <source src="static/videos/rgb_3d_inference/genmatter_goat_viz_compressed.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>Goat sequence.</figcaption>
+              </figure>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline controls>
+                    <source src="static/videos/rgb_3d_inference/genmatter_gray_jacket_viz_compressed.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>Gray jacket sequence.</figcaption>
+              </figure>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline controls>
+                    <source src="static/videos/rgb_3d_inference/genmatter_jello_trim_viz_compressed.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>Jello sequence.</figcaption>
+              </figure>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline controls>
+                    <source src="static/videos/rgb_3d_inference/genmatter_manta_ray_viz_compressed.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>Manta ray sequence.</figcaption>
+              </figure>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline controls>
+                    <source src="static/videos/rgb_3d_inference/genmatter_ostrich_viz_compressed.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>Ostrich sequence.</figcaption>
+              </figure>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline controls>
+                    <source src="static/videos/rgb_3d_inference/genmatter_purple_jacket_viz_compressed.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>Purple jacket sequence.</figcaption>
+              </figure>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline controls>
+                    <source src="static/videos/rgb_3d_inference/genmatter_snake_viz_compressed.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>Snake sequence.</figcaption>
+              </figure>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline controls>
+                    <source src="static/videos/rgb_3d_inference/genmatter_whiskey_swirl_viz_compressed.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>Whiskey swirl sequence.</figcaption>
+              </figure>
+            </article>
+            <article class="carousel-slide">
+              <figure class="media-panel carousel-media">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline controls>
+                    <source src="static/videos/rgb_3d_inference/genmatter_wine_swirl_viz_compressed.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <figcaption>Wine swirl sequence.</figcaption>
+              </figure>
+            </article>
+          </div>
+          <button type="button" class="carousel-arrow carousel-next" data-carousel-next aria-label="Next RGB example"><span aria-hidden="true">&rarr;</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section page-section section-soft" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="section-title">BibTeX</h2>
+        <pre class="bibtex-block"><code>@inproceedings{li2026genmatter,
   title     = {GenMatter: Perceiving Physical Objects with Generative Matter Models},
   author    = {Li, Eric and Dasgupta, Arijit and Friedman, Yoni and Huot, Mathieu and Mansinghka, Vikash and O'Connell, Thomas and Freeman, William T. and Tenenbaum, Joshua B.},
   booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
   year      = {2026}
 }</code></pre>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="acknowledgements">
-    <div class="container is-max-desktop content">
-      <h2 class="title is-3 has-text-centered">Acknowledgements</h2>
-      <div class="section-card">
-        <p class="caption-text has-text-centered">
+    <section class="section page-section" id="acknowledgements">
+      <div class="container is-max-desktop content">
+        <h2 class="section-title">Acknowledgements</h2>
+        <p class="acknowledgements-text">
           This work was supported in part by the Department of the Air Force Artificial Intelligence Accelerator (Cooperative Agreement FA8750-19-2-1000), NSF Award 2019786 (The NSF AI Institute for Artificial Intelligence and Fundamental Interactions), Navy-ONR MURI N00002610, Navy-ONR MURI N00014-22-1-2740, CoCoSys from the Georgia Institute of Technology (Award 2023-JU-3131), the MIT Siegel Family Quest for Intelligence, and the Probabilistic Computing Foundation.
         </p>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <footer class="footer">
+  <footer class="footer site-footer">
     <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-8">
-          <div class="content" style="text-align: center;">
-            <p>
-              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-              You are welcome to borrow the source code for your own academic website, and we ask that you link back to the original template sources when you do. <br>
-              This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-            </p>
-          </div>
-        </div>
+      <div class="content has-text-centered">
+        <p>
+          This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+          This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
       </div>
     </div>
   </footer>
 
+  <script>
+    document.querySelectorAll('[data-carousel]').forEach((shell) => {
+      const track = shell.querySelector('.example-carousel');
+      const previous = shell.querySelector('[data-carousel-prev]');
+      const next = shell.querySelector('[data-carousel-next]');
+
+      if (!track || !previous || !next) {
+        return;
+      }
+
+      const scrollBySlide = (direction) => {
+        track.scrollBy({
+          left: direction * track.clientWidth,
+          behavior: 'smooth'
+        });
+      };
+
+      previous.addEventListener('click', () => scrollBySlide(-1));
+      next.addEventListener('click', () => scrollBySlide(1));
+    });
+  </script>
 </body>
 </html>
