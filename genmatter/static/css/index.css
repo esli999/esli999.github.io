@@ -247,7 +247,6 @@ figcaption {
 }
 
 .media-frame {
-  aspect-ratio: 16 / 9;
   background: #050505;
   overflow: hidden;
   width: 100%;
@@ -256,7 +255,7 @@ figcaption {
 .media-frame img,
 .media-frame video {
   display: block;
-  height: 100%;
+  height: auto;
   object-fit: contain;
   width: 100%;
 }
@@ -373,12 +372,12 @@ figcaption {
   color: var(--paper-ink);
   display: grid;
   font-family: 'Google Sans', sans-serif;
-  font-size: 0.78rem;
+  font-size: 1rem;
   font-weight: 700;
   gap: 0.45rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   line-height: 1.25;
-  margin: 0 0 0.45rem;
+  margin: 0 0 0.65rem;
   text-align: center;
 }
 
