@@ -6,12 +6,12 @@
   <meta property="og:title" content="GenMatter: Perceiving Physical Objects with Generative Matter Models">
   <meta property="og:description" content="A unified generative framework for motion-based perception grounded in principles of human vision.">
   <meta property="og:url" content="https://esli999.github.io/genmatter/">
-  <meta property="og:image" content="https://esli999.github.io/genmatter/static/images/genmatter_splash_results.png">
+  <meta property="og:image" content="https://esli999.github.io/genmatter/static/images/genmatter_social_card.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:title" content="GenMatter: Perceiving Physical Objects with Generative Matter Models">
   <meta name="twitter:description" content="GenMatter groups motion and appearance cues into particles and clusters to recover moving physical objects from video.">
-  <meta name="twitter:image" content="https://esli999.github.io/genmatter/static/images/genmatter_splash_results.png">
+  <meta name="twitter:image" content="https://esli999.github.io/genmatter/static/images/genmatter_social_card.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="keywords" content="computer vision, probabilistic inference, motion perception, object segmentation, structure from motion, point tracking, generative models">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,7 +64,10 @@
       </div>
 
       <figure class="hero-figure">
-        <img src="static/images/genmatter_splash_results.png" alt="Frame-by-frame GenMatter results across RGB video examples">
+        <picture>
+          <source srcset="static/images/genmatter_splash_results.webp" type="image/webp">
+          <img src="static/images/genmatter_splash_results.png" width="2400" height="715" alt="Frame-by-frame GenMatter results across RGB video examples" decoding="async">
+        </picture>
         <figcaption>
           GenMatter is a generative model of moving matter. Conditioned on motion and appearance features extracted from video, inference groups observations into particles, small Gaussians representing local matter, and clusters, coherently and independently moveable physical entities. The same framework supports motion-based perception across random dots, camouflaged structure-from-motion scenes, and naturalistic RGB video.
         </figcaption>
@@ -108,7 +111,10 @@
       <div class="container is-max-widescreen">
         <h2 class="section-title">Generative Matter Model and Inference</h2>
         <figure class="figure-panel method-figure">
-          <img src="static/images/genmatter_marquee.png" alt="GenMatter inference pipeline">
+          <picture>
+            <source srcset="static/images/genmatter_marquee.webp" type="image/webp">
+            <img src="static/images/genmatter_marquee.png" width="1600" height="322" alt="GenMatter inference pipeline" loading="lazy" decoding="async">
+          </picture>
           <figcaption>
             RGB video is preprocessed to extract dense depth and optical flow, lifting each pixel to a moving 3D point. The generative model represents a scene as a hierarchy of clusters and particles that emit moving 3D points: clusters generate particles, particles generate observations, and motion is represented at the point, particle, and cluster layers. Inference conditions on the observed points and inverts this hierarchy to recover particles and clusters that explain the observed moving matter.
           </figcaption>
@@ -137,7 +143,10 @@
           We created 27 RDK stimuli from 9 rigid-body scenes and collected binary same-object judgments from 150 participants. GenMatter was run on 50 random seeds per stimulus to match the human sample size.
         </p>
         <figure class="figure-panel">
-          <img src="static/images/genmatter_psychophysics.png" alt="GenMatter psychophysics results">
+          <picture>
+            <source srcset="static/images/genmatter_psychophysics.webp" type="image/webp">
+            <img src="static/images/genmatter_psychophysics.png" width="1800" height="679" alt="GenMatter psychophysics results" loading="lazy" decoding="async">
+          </picture>
           <figcaption>
             GenMatter closely tracks human perceptual judgments across 27 random dot stimuli (r<sup>2</sup> = 0.86, t(25) = 12.4, p &lt; 0.001), capturing graded uncertainty across easy and ambiguous conditions.
           </figcaption>
@@ -149,7 +158,7 @@
               <div class="paired-media">
                 <figure class="media-panel">
                   <div class="media-frame">
-                    <img src="static/images/rdk_examples/s1_c1.gif" alt="Random dot kinematogram condition c1">
+                    <img src="static/images/rdk_examples/s1_c1.gif" width="800" height="608" alt="Random dot kinematogram condition c1" loading="lazy" decoding="async">
                   </div>
                   <figcaption>RDK stimulus c1.</figcaption>
                 </figure>
@@ -167,7 +176,7 @@
               <div class="paired-media">
                 <figure class="media-panel">
                   <div class="media-frame">
-                    <img src="static/images/rdk_examples/s1_c2.gif" alt="Random dot kinematogram condition c2">
+                    <img src="static/images/rdk_examples/s1_c2.gif" width="800" height="608" alt="Random dot kinematogram condition c2" loading="lazy" decoding="async">
                   </div>
                   <figcaption>RDK stimulus c2.</figcaption>
                 </figure>
@@ -185,7 +194,7 @@
               <div class="paired-media">
                 <figure class="media-panel">
                   <div class="media-frame">
-                    <img src="static/images/rdk_examples/s1_c9.gif" alt="Random dot kinematogram condition c9">
+                    <img src="static/images/rdk_examples/s1_c9.gif" width="800" height="608" alt="Random dot kinematogram condition c9" loading="lazy" decoding="async">
                   </div>
                   <figcaption>RDK stimulus c9.</figcaption>
                 </figure>
@@ -213,7 +222,10 @@
           We evaluate GenMatter on 140 short videos of rotating 3D objects with foreground and background textures matched. Static frames provide little segmentation information, but motion supports 3D structure from motion.
         </p>
         <figure class="figure-panel">
-          <img src="static/images/genmatter_gestalt_comparison.png" alt="Qualitative comparison on camouflaged stimuli">
+          <picture>
+            <source srcset="static/images/genmatter_gestalt_comparison.webp" type="image/webp">
+            <img src="static/images/genmatter_gestalt_comparison.png" width="1800" height="521" alt="Qualitative comparison on camouflaged stimuli" loading="lazy" decoding="async">
+          </picture>
           <figcaption>
             GenMatter correctly segments the moving object in camouflaged stimuli, while FlowSAM degrades over time and SegAnyMo fails to detect an object in this example.
           </figcaption>
@@ -342,7 +354,10 @@
           On TAP-Vid-DAVIS videos, GenMatter conditions on monocular depth, optical flow, and DINO features. Its projected 3D particle representation matches CoTracker3 on matter-weighted Jaccard without task-specific pretraining.
         </p>
         <figure class="figure-panel rgb-particle-figure">
-          <img src="static/images/genmatter_camel_particle_viz.png" alt="GenMatter RGB particle visualization">
+          <picture>
+            <source srcset="static/images/genmatter_camel_particle_viz.webp" type="image/webp">
+            <img src="static/images/genmatter_camel_particle_viz.png" width="1600" height="686" alt="GenMatter RGB particle visualization" loading="lazy" decoding="async">
+          </picture>
           <figcaption>
             Per-point particle assignment visualization. Each data point is colored by its assigned particle's RGB color, motion direction, and appearance features; Gaussian particles are shown in the second row. The distinct patterns across motion and appearance show how GenMatter integrates complementary observations into a faithful matter representation.
           </figcaption>
