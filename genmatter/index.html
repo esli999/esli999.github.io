@@ -116,7 +116,7 @@
             <img src="static/images/genmatter_marquee.png" width="1600" height="322" alt="GenMatter inference pipeline" loading="lazy" decoding="async">
           </picture>
           <figcaption>
-            RGB video is preprocessed to extract dense depth and optical flow, lifting each pixel to a moving 3D point. The generative model represents a scene as a hierarchy of clusters and particles that emit moving 3D points: clusters generate particles, particles generate observations, and motion is represented at the point, particle, and cluster layers. Inference conditions on the observed points and inverts this hierarchy to recover particles and clusters that explain the observed moving matter.
+            GenMatter inference pipeline. RGB video is preprocessed (gray arrows) to extract dense depth and optical flow, lifting each pixel to a 3D point tagged with its velocity. The blue box depicts the GenMatter generative model (Sec. 3), which represents a scene as a hierarchy of clusters and particles that emit moving 3D points. Black arrows indicate the generative direction (clusters generate particles, which generate 3D points). Hollow arrows indicate the inference algorithm (Sec. 4), which conditions on observed 3D points to infer particle and cluster parameters. Red arrows depict motion at the point, particle, and cluster layers.
           </figcaption>
         </figure>
         <div class="paper-prose method-prose">
