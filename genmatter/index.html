@@ -148,7 +148,7 @@
             <img src="static/images/genmatter_psychophysics.png" width="1800" height="679" alt="GenMatter psychophysics results" loading="lazy" decoding="async">
           </picture>
           <figcaption>
-            GenMatter closely tracks human perceptual judgments across 27 random dot stimuli (r<sup>2</sup> = 0.86, t(25) = 12.4, p &lt; 0.001), capturing graded uncertainty across easy and ambiguous conditions.
+            GenMatter closely tracks human perceptual judgments on random dot kinematograms. (a) GenMatter accuracy (%) vs. participant accuracy (%) across 27 stimuli (r<sup>2</sup> = 0.86). Each blue circle represents a same-object stimulus and each orange triangle a different-object stimulus. (b) An internal view of the inferred posterior: red points belong to the moving object, blue points to the background, and black points flickered out of the scene. (c) Fast rotation makes object-background separation easy: both GenMatter (86%) and humans (90%) correctly judge the probes as on different objects (left). Slow sliding motion is very challenging: both GenMatter (88%) and humans (84%) incorrectly judge the probes as on the same object (right).
           </figcaption>
         </figure>
         <div class="carousel-shell" data-carousel>
@@ -227,12 +227,12 @@
             <img src="static/images/genmatter_gestalt_comparison.png" width="1800" height="521" alt="Qualitative comparison on camouflaged stimuli" loading="lazy" decoding="async">
           </picture>
           <figcaption>
-            GenMatter correctly segments the moving object in camouflaged stimuli, while FlowSAM degrades over time and SegAnyMo fails to detect an object in this example.
+            Qualitative comparison on camouflaged stimuli. Probe point segmentation on scene 16, texture 01. The depth estimate is uninformative, and the flow estimate shows that on-axis rotation causes opposing motion at top vs. bottom (blue vs. red). GenMatter correctly segments the moving object, while FlowSAM segments the initial frame correctly but degrades over time. SegAnyMo fails to detect any object in the scene.
           </figcaption>
         </figure>
         <div class="table-block">
           <p class="table-caption">
-            <strong>Table 1.</strong> Summary statistics across 140 Gestalt videos. Values are mean [95% bootstrap CI].
+            <strong>Table 1.</strong> Summary statistics across 140 Gestalt videos. GenMatter scores higher on mean per-pixel accuracy and Jaccard index. GenMatter is also more consistent across stimuli. Values reported as mean [95% bootstrap CI].
           </p>
           <table class="results-table">
             <thead>
@@ -396,6 +396,11 @@
           <div class="example-carousel single-carousel" aria-label="Naturalistic RGB video examples">
             <article class="carousel-slide">
               <figure class="media-panel carousel-media">
+                <div class="rgb-pane-labels">
+                  <span>Original video</span>
+                  <span>Particles colored by average color</span>
+                  <span>Particles colored by cluster assignment</span>
+                </div>
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
                     <source src="static/videos/rgb_3d_inference/genmatter_camel_viz_compressed.mp4" type="video/mp4">
@@ -406,6 +411,11 @@
             </article>
             <article class="carousel-slide">
               <figure class="media-panel carousel-media">
+                <div class="rgb-pane-labels">
+                  <span>Original video</span>
+                  <span>Particles colored by average color</span>
+                  <span>Particles colored by cluster assignment</span>
+                </div>
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
                     <source src="static/videos/rgb_3d_inference/genmatter_cloth_bag_viz_compressed.mp4" type="video/mp4">
@@ -416,6 +426,11 @@
             </article>
             <article class="carousel-slide">
               <figure class="media-panel carousel-media">
+                <div class="rgb-pane-labels">
+                  <span>Original video</span>
+                  <span>Particles colored by average color</span>
+                  <span>Particles colored by cluster assignment</span>
+                </div>
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
                     <source src="static/videos/rgb_3d_inference/genmatter_cloth_viz_compressed.mp4" type="video/mp4">
@@ -426,6 +441,11 @@
             </article>
             <article class="carousel-slide">
               <figure class="media-panel carousel-media">
+                <div class="rgb-pane-labels">
+                  <span>Original video</span>
+                  <span>Particles colored by average color</span>
+                  <span>Particles colored by cluster assignment</span>
+                </div>
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
                     <source src="static/videos/rgb_3d_inference/genmatter_eagle_viz_compressed.mp4" type="video/mp4">
@@ -436,6 +456,11 @@
             </article>
             <article class="carousel-slide">
               <figure class="media-panel carousel-media">
+                <div class="rgb-pane-labels">
+                  <span>Original video</span>
+                  <span>Particles colored by average color</span>
+                  <span>Particles colored by cluster assignment</span>
+                </div>
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
                     <source src="static/videos/rgb_3d_inference/genmatter_goat_viz_compressed.mp4" type="video/mp4">
@@ -446,6 +471,11 @@
             </article>
             <article class="carousel-slide">
               <figure class="media-panel carousel-media">
+                <div class="rgb-pane-labels">
+                  <span>Original video</span>
+                  <span>Particles colored by average color</span>
+                  <span>Particles colored by cluster assignment</span>
+                </div>
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
                     <source src="static/videos/rgb_3d_inference/genmatter_gray_jacket_viz_compressed.mp4" type="video/mp4">
@@ -456,6 +486,11 @@
             </article>
             <article class="carousel-slide">
               <figure class="media-panel carousel-media">
+                <div class="rgb-pane-labels">
+                  <span>Original video</span>
+                  <span>Particles colored by average color</span>
+                  <span>Particles colored by cluster assignment</span>
+                </div>
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
                     <source src="static/videos/rgb_3d_inference/genmatter_jello_trim_viz_compressed.mp4" type="video/mp4">
@@ -466,6 +501,11 @@
             </article>
             <article class="carousel-slide">
               <figure class="media-panel carousel-media">
+                <div class="rgb-pane-labels">
+                  <span>Original video</span>
+                  <span>Particles colored by average color</span>
+                  <span>Particles colored by cluster assignment</span>
+                </div>
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
                     <source src="static/videos/rgb_3d_inference/genmatter_manta_ray_viz_compressed.mp4" type="video/mp4">
@@ -476,6 +516,11 @@
             </article>
             <article class="carousel-slide">
               <figure class="media-panel carousel-media">
+                <div class="rgb-pane-labels">
+                  <span>Original video</span>
+                  <span>Particles colored by average color</span>
+                  <span>Particles colored by cluster assignment</span>
+                </div>
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
                     <source src="static/videos/rgb_3d_inference/genmatter_ostrich_viz_compressed.mp4" type="video/mp4">
@@ -486,6 +531,11 @@
             </article>
             <article class="carousel-slide">
               <figure class="media-panel carousel-media">
+                <div class="rgb-pane-labels">
+                  <span>Original video</span>
+                  <span>Particles colored by average color</span>
+                  <span>Particles colored by cluster assignment</span>
+                </div>
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
                     <source src="static/videos/rgb_3d_inference/genmatter_purple_jacket_viz_compressed.mp4" type="video/mp4">
@@ -496,6 +546,11 @@
             </article>
             <article class="carousel-slide">
               <figure class="media-panel carousel-media">
+                <div class="rgb-pane-labels">
+                  <span>Original video</span>
+                  <span>Particles colored by average color</span>
+                  <span>Particles colored by cluster assignment</span>
+                </div>
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
                     <source src="static/videos/rgb_3d_inference/genmatter_snake_viz_compressed.mp4" type="video/mp4">
@@ -506,6 +561,11 @@
             </article>
             <article class="carousel-slide">
               <figure class="media-panel carousel-media">
+                <div class="rgb-pane-labels">
+                  <span>Original video</span>
+                  <span>Particles colored by average color</span>
+                  <span>Particles colored by cluster assignment</span>
+                </div>
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
                     <source src="static/videos/rgb_3d_inference/genmatter_whiskey_swirl_viz_compressed.mp4" type="video/mp4">
@@ -516,6 +576,11 @@
             </article>
             <article class="carousel-slide">
               <figure class="media-panel carousel-media">
+                <div class="rgb-pane-labels">
+                  <span>Original video</span>
+                  <span>Particles colored by average color</span>
+                  <span>Particles colored by cluster assignment</span>
+                </div>
                 <div class="media-frame">
                   <video autoplay muted loop playsinline controls>
                     <source src="static/videos/rgb_3d_inference/genmatter_wine_swirl_viz_compressed.mp4" type="video/mp4">

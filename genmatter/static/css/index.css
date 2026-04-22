@@ -369,6 +369,23 @@ figcaption {
   padding: 0;
 }
 
+.rgb-pane-labels {
+  color: var(--paper-ink);
+  display: grid;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  gap: 0.45rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  line-height: 1.25;
+  margin: 0 0 0.45rem;
+  text-align: center;
+}
+
+.rgb-pane-labels span {
+  overflow-wrap: anywhere;
+}
+
 .table-block {
   margin: 1.35rem auto 0;
   max-width: 920px;
