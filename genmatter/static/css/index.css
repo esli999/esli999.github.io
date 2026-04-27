@@ -103,6 +103,10 @@ a:hover {
   margin-top: 1.45rem;
 }
 
+.publication-links .link-block {
+  display: inline-block;
+}
+
 .button.is-dark {
   background: var(--paper-ink);
   border: 0;
@@ -112,6 +116,10 @@ a:hover {
   font-weight: 500;
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.button.is-dark.is-rounded {
+  border-radius: 9999px;
 }
 
 .button.is-dark:hover {
