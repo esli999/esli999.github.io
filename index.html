@@ -1,72 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="esli999 — personal site." />
-    <title>esli999</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Eric Li is a PhD student at MIT CSAIL working on human-level visual perception, physical reasoning, machine learning, and probabilistic programming.">
+    <title>Eric Li</title>
     <style>
       :root {
         color-scheme: light dark;
-        --fg: #0d1117;
-        --muted: #57606a;
-        --accent: #0969da;
         --bg: #ffffff;
+        --fg: #222222;
+        --muted: #555555;
+        --subtle: #777777;
+        --line: #dddddd;
+        --soft: #f7f7f7;
+        --accent: #1772d0;
       }
+
       @media (prefers-color-scheme: dark) {
         :root {
-          --fg: #f0f4f8;
-          --muted: #8b949e;
-          --accent: #58a6ff;
-          --bg: #0d1117;
+          --bg: #111111;
+          --fg: #eeeeee;
+          --muted: #c5c5c5;
+          --subtle: #a0a0a0;
+          --line: #333333;
+          --soft: #1a1a1a;
+          --accent: #7db7ff;
         }
       }
+
       * {
         box-sizing: border-box;
       }
+
       body {
-        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
         margin: 0;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem 1.5rem;
         background: var(--bg);
         color: var(--fg);
-        line-height: 1.6;
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 15px;
+        line-height: 1.55;
         -webkit-font-smoothing: antialiased;
       }
-      main {
-        max-width: 22rem;
-        text-align: center;
-      }
-      h1 {
-        font-size: 1.75rem;
-        font-weight: 600;
-        letter-spacing: -0.02em;
-        margin: 0 0 0.5rem;
-      }
-      p {
-        color: var(--muted);
-        margin: 0 0 1.5rem;
-        font-size: 1rem;
-      }
+
       a {
         color: var(--accent);
         text-decoration: none;
-        font-weight: 500;
       }
+
+      a:focus,
       a:hover {
         text-decoration: underline;
+      }
+
+      .page {
+        width: min(100%, 940px);
+        margin: 0 auto;
+        padding: 28px 20px 42px;
+      }
+
+      .intro {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 18px 0 22px;
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: 32px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      h2 {
+        margin: 28px 0 12px;
+        font-size: 22px;
+        font-weight: 400;
+      }
+
+      h3 {
+        margin: 24px 0 8px;
+        color: var(--subtle);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      p {
+        margin: 0 0 12px;
+      }
+
+      .links {
+        margin: 14px 0 0;
+        text-align: center;
+      }
+
+      .links a {
+        white-space: nowrap;
+      }
+
+      .links span {
+        color: var(--subtle);
+        padding: 0 7px;
+      }
+
+      .research-note {
+        color: var(--muted);
+      }
+
+      .publication {
+        display: grid;
+        grid-template-columns: 160px 1fr;
+        gap: 18px;
+        padding: 16px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .publication:first-of-type {
+        border-top: 0;
+      }
+
+      .thumb {
+        align-self: start;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--soft);
+      }
+
+      .thumb img,
+      .thumb video {
+        display: block;
+        width: 100%;
+        height: 104px;
+        object-fit: cover;
+      }
+
+      .paper-title {
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .authors,
+      .venue,
+      .paper-links {
+        color: var(--muted);
+      }
+
+      .venue {
+        margin-top: 1px;
+      }
+
+      .tag {
+        color: var(--fg);
+        font-weight: 700;
+      }
+
+      .paper-links {
+        margin-top: 2px;
+      }
+
+      .paper-links a {
+        margin-right: 7px;
+      }
+
+      .summary {
+        margin-top: 6px;
+        color: var(--muted);
+      }
+
+      .compact-publication {
+        padding: 12px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          padding: 18px 16px 32px;
+        }
+
+        h1 {
+          font-size: 28px;
+        }
+
+        .publication {
+          grid-template-columns: 1fr;
+        }
+
+        .thumb {
+          max-width: 260px;
+        }
       }
     </style>
   </head>
   <body>
-    <main>
-      <h1>esli999</h1>
-      <p>Personal site — more here before long.</p>
-      <p><a href="genmatter/">Genmatter</a></p>
+    <main class="page">
+      <header class="intro" aria-labelledby="name">
+        <div>
+          <h1 id="name">Eric Li</h1>
+          <p>
+            I am a PhD student at <a href="https://www.csail.mit.edu/">MIT CSAIL</a>, where I work with
+            <a href="https://billf.mit.edu/">Bill Freeman</a> and
+            <a href="https://web.mit.edu/cocosci/josh.html">Josh Tenenbaum</a>.
+            Before MIT, I studied EECS at Berkeley and worked on computational imaging with
+            <a href="https://www.laurawaller.com/">Laura Waller</a> and quantum computing with
+            <a href="https://www2.eecs.berkeley.edu/Faculty/Homepages/alp.html">Alp Sipahigil</a>.
+          </p>
+          <p>
+            I study human-level visual perception and physical reasoning through machine learning and
+            probabilistic programming. My recent projects build generative models that infer moving matter,
+            objects, and 3D scene structure from visual input.
+          </p>
+          <p class="links">
+            <a href="mailto:esli@mit.edu">Email</a><span>/</span>
+            <a href="https://scholar.google.com/citations?user=6seFu7oAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a><span>/</span>
+            <a href="https://github.com/esli999">GitHub</a>
+          </p>
+        </div>
+      </header>
+
+      <section aria-labelledby="research">
+        <h2 id="research">Research</h2>
+        <p class="research-note">
+          Selected papers, ordered roughly by relevance to my current work.
+        </p>
+
+        <h3>Visual Perception and Physical Reasoning</h3>
+        <article class="publication">
+          <a class="thumb" href="genmatter/index.html" aria-label="GenMatter project page">
+            <video autoplay muted loop playsinline aria-label="GenMatter inference video">
+              <source src="assets/genmatter_preview.mp4" type="video/mp4">
+            </video>
+          </a>
+          <div>
+            <a class="paper-title" href="genmatter/index.html">GenMatter: Perceiving Physical Objects with Generative Matter Models</a>
+            <div class="authors">
+              <strong>Eric Li</strong>, Arijit Dasgupta, Yoni Friedman, Mathieu Huot, Vikash Mansinghka,
+              Thomas O'Connell, William T. Freeman, Joshua B. Tenenbaum
+            </div>
+            <div class="venue"><span class="tag">CVPR 2026</span></div>
+            <div class="paper-links">
+              <a href="genmatter/index.html">project page</a>
+              <a href="https://arxiv.org/abs/2604.22160">arXiv</a>
+              <a href="https://github.com/esli999/GenMatter">code</a>
+            </div>
+            <p class="summary">
+              A generative model of moving matter that groups motion and appearance cues into particles
+              and clusters, supporting motion-based perception across random dots, camouflaged
+              structure-from-motion scenes, and naturalistic RGB video.
+            </p>
+          </div>
+        </article>
+
+        <article class="publication">
+          <a class="thumb" href="https://arxiv.org/abs/2312.08715" aria-label="Bayes3D paper">
+            <img src="assets/bayes3d.gif" alt="Bayes3D inference animation">
+          </a>
+          <div>
+            <a class="paper-title" href="https://arxiv.org/abs/2312.08715">Bayes3D: fast learning and inference in structured generative models of 3D objects and scenes</a>
+            <div class="authors">
+              Nishad Gothoskar*, Matin Ghavami*, <strong>Eric Li*</strong>, Aidan Curtis, Michael Noseworthy,
+              Karen Chung, Brian Patton, William T. Freeman, Joshua B. Tenenbaum, Mirko Klukas,
+              Vikash K. Mansinghka
+            </div>
+            <div class="venue">arXiv, 2023</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2312.08715">arXiv</a>
+              <a href="https://arxiv.org/pdf/2312.08715">pdf</a>
+              <a href="https://github.com/probcomp/b3d">code</a>
+            </div>
+            <p class="summary">
+              An uncertainty-aware perception system for structured 3D scenes, using a hierarchical
+              Bayesian model and GPU-accelerated inference to learn novel objects from a few views and
+              infer object pose and scene composition in clutter.
+            </p>
+          </div>
+        </article>
+
+        <article class="publication">
+          <a class="thumb" href="https://arxiv.org/abs/2502.01800" aria-label="Flow-based domain randomization paper">
+            <img src="assets/goflow.gif" alt="GOFLOW skill learning animation">
+          </a>
+          <div>
+            <a class="paper-title" href="https://arxiv.org/abs/2502.01800">Flow-based Domain Randomization for Learning and Sequencing Robotic Skills</a>
+            <div class="authors">
+              Aidan Curtis, <strong>Eric Li</strong>, Michael Noseworthy, Nishad Gothoskar, Sachin Chitta,
+              Hui Li, Leslie Pack Kaelbling, Nicole E Carey
+            </div>
+            <div class="venue">ICML, 2025</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2502.01800">arXiv</a>
+              <a href="https://github.com/aidan-curtis/goflow">code</a>
+            </div>
+            <p class="summary">
+              A learned domain-randomization method for robotic reinforcement learning, using normalizing
+              flows to model flexible simulation distributions that train robust skills and serve as
+              uncertainty-aware artifacts for multi-step manipulation planning.
+            </p>
+          </div>
+        </article>
+
+        <h3>Computational Imaging</h3>
+        <article class="compact-publication">
+          <a class="paper-title" href="https://strobe.colorado.edu/publication/exceeding-the-limits-of-algorithmic-self-calibrated-aberration-recovery-in-fourier-ptychography">Exceeding the limits of algorithmic self-calibrated aberration recovery in Fourier ptychography</a>
+          <div class="authors"><strong>Eric Li</strong>, Stuart Sherwin, Gautam Gunjala, Laura Waller</div>
+          <div class="venue">Optics Continuum, 2023</div>
+          <p class="summary">
+            A computational imaging study of aberration recovery in Fourier ptychographic microscopy,
+            showing where software-only self-calibration breaks down and how a simple diffuser calibration
+            can extend accurate reconstruction to larger optical errors.
+          </p>
+        </article>
+
+        <h3>Quantum Computing (from a past life)</h3>
+        <article class="compact-publication">
+          <a class="paper-title" href="https://www.nature.com/articles/s41467-025-67066-z">Observation of interface piezoelectricity in superconducting devices on silicon</a>
+          <div class="authors">
+            H. Zhou, <strong>Eric Li</strong>, K. Godeneli, Z. H. Zhang, S. Jahanbani, K. Yu, M. Odeh,
+            S. Aloni, and others
+          </div>
+          <div class="venue">Nature Communications, 2025</div>
+          <p class="summary">
+            Identifies interface piezoelectricity as a decoherence channel in silicon-based superconducting
+            quantum processors, showing that aluminum-silicon interfaces can convert microwave energy into
+            acoustic loss and limit qubit quality factors.
+          </p>
+        </article>
+
+        <article class="compact-publication">
+          <a class="paper-title" href="https://www.nature.com/articles/s41567-024-02740-5">Non-Markovian dynamics of a superconducting qubit in a phononic bandgap</a>
+          <div class="authors">
+            M. Odeh, K. Godeneli, <strong>Eric Li</strong>, R. Tangirala, H. Zhou, X. Zhang, Z. H. Zhang,
+            and others
+          </div>
+          <div class="venue">Nature Physics, 2025</div>
+          <p class="summary">
+            Uses phononic-bandgap engineering to protect a superconducting qubit from defect-mediated
+            phonon loss, reshaping its dissipative environment and pointing toward smaller, longer-lived
+            qubits for quantum processors.
+          </p>
+        </article>
+      </section>
     </main>
   </body>
 </html>

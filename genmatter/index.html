@@ -27,7 +27,6 @@
   <script defer src="static/js/fontawesome.all.min.js"></script>
 </head>
 <body>
-
   <header class="site-hero">
     <div class="container is-max-widescreen">
       <div class="hero-copy has-text-centered">
@@ -53,25 +52,31 @@
 
         <div class="publication-links">
           <span class="link-block">
-            <a href="https://arxiv.org/pdf/2604.22160.pdf"
-               class="external-link button is-normal is-rounded is-dark"
-               target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://arxiv.org/pdf/2604.22160.pdf"
+              class="external-link button is-normal is-rounded is-dark"
+              target="_blank"
+              rel="noopener noreferrer">
               <span class="icon"><i class="fas fa-file-pdf"></i></span>
               <span>Paper</span>
             </a>
           </span>
           <span class="link-block">
-            <a href="https://arxiv.org/abs/2604.22160"
-               class="external-link button is-normal is-rounded is-dark"
-               target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://arxiv.org/abs/2604.22160"
+              class="external-link button is-normal is-rounded is-dark"
+              target="_blank"
+              rel="noopener noreferrer">
               <span class="icon"><i class="ai ai-arxiv"></i></span>
               <span>arXiv</span>
             </a>
           </span>
           <span class="link-block">
-            <a href="https://github.com/esli999/GenMatter"
-               class="external-link button is-normal is-rounded is-dark"
-               target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://github.com/esli999/GenMatter"
+              class="external-link button is-normal is-rounded is-dark"
+              target="_blank"
+              rel="noopener noreferrer">
               <span class="icon"><i class="fab fa-github"></i></span>
               <span>Code</span>
             </a>
@@ -80,12 +85,35 @@
       </div>
 
       <figure class="hero-figure">
-        <picture>
-          <source srcset="static/images/genmatter_splash_results.webp" type="image/webp">
-          <img src="static/images/genmatter_splash_results.png" width="2400" height="715" alt="Frame-by-frame GenMatter results across RGB video examples" decoding="async">
-        </picture>
+        <div class="hero-video-grid" aria-label="Particle grouping examples on natural RGB videos">
+          <div class="hero-video-card">
+            <div class="hero-video-frame">
+              <video autoplay muted loop playsinline controls preload="auto" aria-label="Dog sequence with points colored by inferred particle grouping">
+                <source src="static/videos/hero/dog_particle_hero.mp4" type="video/mp4">
+              </video>
+            </div>
+            <span>Dog</span>
+          </div>
+          <div class="hero-video-card">
+            <div class="hero-video-frame">
+              <video autoplay muted loop playsinline controls preload="auto" aria-label="Purple jacket sequence with points colored by inferred particle grouping">
+                <source src="static/videos/hero/purple_jacket_particle_hero.mp4" type="video/mp4">
+              </video>
+            </div>
+            <span>Purple jacket</span>
+          </div>
+          <div class="hero-video-card">
+            <div class="hero-video-frame">
+              <video autoplay muted loop playsinline controls preload="auto" aria-label="Wine sequence with points colored by inferred particle grouping">
+                <source src="static/videos/hero/wine_particle_hero.mp4" type="video/mp4">
+              </video>
+            </div>
+            <span>Wine</span>
+          </div>
+        </div>
         <figcaption>
-          GenMatter is a generative model of moving matter. Conditioned on motion and appearance features extracted from video, inference groups observations into particles, small Gaussians representing local matter, and clusters, coherently and independently moveable physical entities. The same framework supports motion-based perception across random dots, camouflaged structure-from-motion scenes, and naturalistic RGB video.
+          GenMatter lifts RGB video into moving 3D points and groups them into local matter particles.
+          Colors show inferred particle identity: the pieces of moving matter recovered from video.
         </figcaption>
       </figure>
     </div>
@@ -93,16 +121,45 @@
 
   <main>
     <section class="section page-section section-soft">
-      <div class="container is-max-desktop">
+      <div class="container is-max-widescreen">
         <h2 class="section-title">Abstract</h2>
         <div class="paper-text">
           <p>
-            Human visual perception offers valuable insights for understanding computational principles of motion-based scene interpretation. Humans robustly detect and segment moving entities that constitute independently moveable chunks of matter, whether observing sparse moving dots, textured surfaces, or naturalistic scenes. In contrast, existing computer vision systems lack a unified approach that works across these diverse settings. Inspired by principles of human perception, we propose a generative model that hierarchically groups low-level motion cues and high-level appearance features into particles (small Gaussians representing local matter), and groups particles into clusters capturing coherently and independently moveable physical entities.
+            Human visual perception offers valuable insights for understanding computational principles of motion-based
+            scene interpretation. Humans robustly detect and segment moving entities that constitute independently
+            moveable chunks of matter, whether observing sparse moving dots, textured surfaces, or naturalistic scenes.
+            In contrast, existing computer vision systems lack a unified approach that works across these diverse
+            settings. Inspired by principles of human perception, we propose a generative model that hierarchically
+            groups low-level motion cues and high-level appearance features into particles (small Gaussians
+            representing local matter), and groups particles into clusters capturing coherently and independently
+            moveable physical entities.
           </p>
           <p>
-            We develop a hardware-accelerated inference algorithm based on parallelized block Gibbs sampling to recover stable particle motion and groupings. Our model operates on different kinds of inputs (random dots, stylized textures, or naturalistic RGB video), enabling it to work across settings where biological vision succeeds but existing computer vision approaches do not. We validate this unified framework across three domains: on 2D <em>random dot kinematograms</em>, our approach captures human object perception including graded uncertainty across ambiguous conditions; on a Gestalt-inspired dataset of camouflaged rotating objects, our approach recovers correct 3D structure from motion and thereby accurate 2D object segmentation; and on naturalistic RGB videos, our model tracks the moving 3D matter that makes up deforming objects, enabling robust object-level scene understanding. This work thus establishes a general framework for motion-based perception grounded in principles of human vision.
+            We develop a hardware-accelerated inference algorithm based on parallelized block Gibbs sampling to recover
+            stable particle motion and groupings. Our model operates on different kinds of inputs (random dots,
+            stylized textures, or naturalistic RGB video), enabling it to work across settings where biological vision
+            succeeds but existing computer vision approaches do not. We validate this unified framework across three
+            domains: on 2D <em>random dot kinematograms</em>, our approach captures human object perception including
+            graded uncertainty across ambiguous conditions; on a Gestalt-inspired dataset of camouflaged rotating
+            objects, our approach recovers correct 3D structure from motion and thereby accurate 2D object segmentation;
+            and on naturalistic RGB videos, our model tracks the moving 3D matter that makes up deforming objects,
+            enabling robust object-level scene understanding. This work thus establishes a general framework for
+            motion-based perception grounded in principles of human vision.
           </p>
         </div>
+        <figure class="figure-panel splash-summary-figure">
+          <picture>
+            <source srcset="static/images/genmatter_splash_results.webp" type="image/webp">
+            <img src="static/images/genmatter_splash_results.png" width="2400" height="715" alt="Frame-by-frame GenMatter results across RGB video examples" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>
+            GenMatter is a generative model of moving matter. Conditioned on motion and appearance features
+            extracted from video, inference groups observations into particles, small Gaussians representing local
+            matter, and clusters, coherently and independently moveable physical entities. The same framework supports
+            motion-based perception across random dots, camouflaged structure-from-motion scenes, and naturalistic RGB
+            video.
+          </figcaption>
+        </figure>
       </div>
     </section>
 
@@ -226,7 +283,7 @@
             </article>
           </div>
           <button type="button" class="carousel-arrow carousel-next" data-carousel-next aria-label="Next RDK example"><span aria-hidden="true">&rarr;</span></button>
-          <p class="carousel-caption carousel-caption-shared">Each panel pairs an original random-dot kinematogram with GenMatter's inferred posterior over object structure. The stimuli contain sparse moving dots with no appearance or boundary cues, so the task is to explain whether probe dots belong to the same moving object from motion alone. In the posterior videos, dots are colored by inferred cluster assignment, showing how the model groups ambiguous dot correspondences into coherent moving matter.</p>
+          <p class="carousel-caption">Each panel pairs an original random-dot kinematogram with GenMatter's inferred posterior over object structure. The stimuli contain sparse moving dots with no appearance or boundary cues, so the task is to explain whether probe dots belong to the same moving object from motion alone. In the posterior videos, dots are colored by inferred cluster assignment, showing how the model groups ambiguous dot correspondences into coherent moving matter.</p>
         </div>
       </div>
     </section>
@@ -365,7 +422,7 @@
 
     <section class="section page-section">
       <div class="container is-max-widescreen">
-        <h2 class="section-title">3D Particle Representations from RGB Video</h2>
+        <h2 class="section-title" id="rgb-particles">3D Particle Representations from RGB Video</h2>
         <p class="section-lede">
           On TAP-Vid-DAVIS videos, GenMatter conditions on monocular depth, optical flow, and DINO features. Its projected 3D particle representation matches CoTracker3 on matter-weighted Jaccard without task-specific pretraining.
         </p>
@@ -627,7 +684,11 @@
       <div class="container is-max-desktop content">
         <h2 class="section-title">Acknowledgements</h2>
         <p class="acknowledgements-text">
-          This work was supported in part by the Department of the Air Force Artificial Intelligence Accelerator (Cooperative Agreement FA8750-19-2-1000), NSF Award 2019786 (The NSF AI Institute for Artificial Intelligence and Fundamental Interactions), Navy-ONR MURI N00002610, Navy-ONR MURI N00014-22-1-2740, CoCoSys from the Georgia Institute of Technology (Award 2023-JU-3131), the MIT Siegel Family Quest for Intelligence, and the Probabilistic Computing Foundation.
+          This work was supported in part by the Department of the Air Force Artificial Intelligence Accelerator
+          (Cooperative Agreement FA8750-19-2-1000), NSF Award 2019786 (The NSF AI Institute for Artificial Intelligence
+          and Fundamental Interactions), Navy-ONR MURI N00002610, Navy-ONR MURI N00014-22-1-2740, CoCoSys from the
+          Georgia Institute of Technology (Award 2023-JU-3131), the MIT Siegel Family Quest for Intelligence, and the
+          Probabilistic Computing Foundation.
         </p>
       </div>
     </section>
@@ -637,8 +698,13 @@
     <div class="container">
       <div class="content has-text-centered">
         <p>
-          This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-          This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          This page was built using the
+          <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener noreferrer">Academic Project Page Template</a>
+          adopted from the
+          <a href="https://nerfies.github.io" target="_blank" rel="noopener noreferrer">Nerfies</a>
+          project page.
+          This website is licensed under a
+          <a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license noopener noreferrer" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
         </p>
       </div>
     </div>
