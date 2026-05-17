@@ -37,7 +37,7 @@
         margin: 0;
         background: var(--bg);
         color: var(--fg);
-        font-family: Verdana, Geneva, sans-serif;
+        font-family: Verdana, Helvetica, sans-serif;
         font-size: 15px;
         line-height: 1.55;
         -webkit-font-smoothing: antialiased;
@@ -82,9 +82,9 @@
       h3 {
         margin: 24px 0 8px;
         color: var(--subtle);
-        font-size: 13px;
+        font-size: 16px;
         font-weight: 700;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.04em;
         text-transform: uppercase;
       }
 
@@ -126,7 +126,7 @@
         align-self: start;
         overflow: hidden;
         border: 1px solid var(--line);
-        border-radius: 6px;
+        border-radius: 0;
         background: var(--soft);
       }
 
@@ -140,7 +140,7 @@
 
       .paper-title {
         font-size: 16px;
-        font-weight: 700;
+        font-weight: 600;
       }
 
       .authors,
@@ -174,6 +174,20 @@
       .compact-publication {
         padding: 12px 0;
         border-top: 1px solid var(--line);
+      }
+
+      .site-footer {
+        margin-top: 36px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.5;
+        color: var(--subtle);
+      }
+
+      .site-footer p {
+        margin: 0;
       }
 
       @media (max-width: 640px) {
@@ -210,8 +224,14 @@
           </p>
           <p>
             I study human-level visual perception and physical reasoning through machine learning and
-            probabilistic programming. My recent projects build generative models that infer moving matter,
+            probabilistic programming. My recent projects build <em>structured</em> generative models that infer moving matter,
             objects, and 3D scene structure from visual input.
+          </p>
+          <p>
+            If you're also interested in visual perception, physical reasoning, probabilistic programming,
+            or Bayesian modeling, please send me an email! If you're considering grad school and aren't sure about how the process works, or just want to talk to a
+            current grad student to see if it's right for you, consider checking out the
+            <a href="https://eecs-gaap.mit.edu/">MIT EECS Graduate Application Assistance Program (GAAP)</a>.
           </p>
           <p class="links">
             <a href="mailto:esli@mit.edu">Email</a><span>/</span>
@@ -314,7 +334,7 @@
           </p>
         </article>
 
-        <h3>Quantum Computing (from a past life)</h3>
+        <h3>Quantum Computing</h3>
         <article class="compact-publication">
           <a class="paper-title" href="https://www.nature.com/articles/s41467-025-67066-z">Observation of interface piezoelectricity in superconducting devices on silicon</a>
           <div class="authors">
@@ -343,6 +363,13 @@
           </p>
         </article>
       </section>
+
+      <footer class="site-footer">
+        <p>
+          Website template adapted from
+          <a href="https://jonbarron.info/">Jon Barron</a>.
+        </p>
+      </footer>
     </main>
   </body>
 </html>
