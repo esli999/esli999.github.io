@@ -63,7 +63,12 @@
         display: grid;
         grid-template-columns: 1fr;
         gap: 18px;
+        align-items: center;
         padding: 18px 0 22px;
+      }
+
+      .intro-copy {
+        min-width: 0;
       }
 
       h1 {
@@ -104,6 +109,26 @@
       .links span {
         color: var(--subtle);
         padding: 0 7px;
+      }
+
+      .portrait-card {
+        width: min(100%, 210px);
+        margin: 4px auto 0;
+        padding: 8px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0)),
+          var(--soft);
+        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.08);
+      }
+
+      .portrait {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 12px;
       }
 
       .research-note {
@@ -207,12 +232,28 @@
           max-width: 260px;
         }
       }
+
+      @media (min-width: 720px) {
+        .intro {
+          grid-template-columns: 210px minmax(0, 1fr);
+          gap: 30px;
+          padding-top: 28px;
+        }
+
+        .portrait-card {
+          justify-self: start;
+          margin: 0;
+        }
+      }
     </style>
   </head>
   <body>
     <main class="page">
       <header class="intro" aria-labelledby="name">
-        <div>
+        <figure class="portrait-card">
+          <img class="portrait" src="assets/new_me.jpg" alt="Portrait of Eric Li">
+        </figure>
+        <div class="intro-copy">
           <h1 id="name">Eric Li</h1>
           <p>
             I am a PhD student at <a href="https://www.csail.mit.edu/">MIT CSAIL</a>, where I work with
@@ -324,7 +365,7 @@
 
         <h3>Computational Imaging</h3>
         <article class="compact-publication">
-          <a class="paper-title" href="https://strobe.colorado.edu/publication/exceeding-the-limits-of-algorithmic-self-calibrated-aberration-recovery-in-fourier-ptychography">Exceeding the limits of algorithmic self-calibrated aberration recovery in Fourier ptychography</a>
+          <a class="paper-title" href="http://dx.doi.org/10.1364/OPTCON.475990">Exceeding the limits of algorithmic self-calibrated aberration recovery in Fourier ptychography</a>
           <div class="authors"><strong>Eric Li</strong>, Stuart Sherwin, Gautam Gunjala, Laura Waller</div>
           <div class="venue">Optics Continuum, 2023</div>
           <p class="summary">
