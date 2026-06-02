@@ -182,6 +182,19 @@ a:hover {
   text-align: center;
 }
 
+.stream-frame {
+  aspect-ratio: 2304 / 1032;
+  background: #050505;
+  overflow: hidden;
+}
+
+.stream-frame video {
+  display: block;
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
 .splash-summary-figure {
   margin: 2rem auto 0;
   max-width: 1180px;
@@ -533,10 +546,6 @@ figcaption {
 }
 
 @media screen and (max-width: 900px) {
-  .hero-video-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .paired-media {
     grid-template-columns: 1fr;
   }

@@ -120,6 +120,60 @@
   </header>
 
   <main>
+    <section class="section page-section">
+      <div class="container is-max-widescreen">
+        <h2 class="section-title">Real-Time Streaming Inference</h2>
+        <p class="section-lede">GenMatter runs across a range of operating speeds while conditioning on monocular depth, optical flow, and DINO features. These videos show it tracking the moving 3D matter that makes up deforming objects, frame by frame.</p>
+        <div class="carousel-shell stream-shell" data-carousel>
+          <button type="button" class="carousel-arrow carousel-prev" data-carousel-prev aria-label="Previous demo"><span aria-hidden="true">&larr;</span></button>
+          <div class="example-carousel" aria-label="GenMatter inference on streaming RGB video">
+            <article class="carousel-slide stream-slide">
+              <div class="stream-frame">
+                <video autoplay muted loop playsinline controls preload="auto" aria-label="Black swan: GenMatter inference with 2D and 3D particle and cluster views and on-screen timing">
+                  <source src="static/videos/streaming/blackswan_live.mp4" type="video/mp4">
+                </video>
+              </div>
+              <figcaption>Black swan</figcaption>
+            </article>
+            <article class="carousel-slide stream-slide">
+              <div class="stream-frame">
+                <video muted loop playsinline controls preload="metadata" aria-label="Purple jacket folded by hand: GenMatter inference with 2D and 3D particle and cluster views and on-screen timing">
+                  <source src="static/videos/streaming/purple_jacket_live.mp4" type="video/mp4">
+                </video>
+              </div>
+              <figcaption>Purple jacket</figcaption>
+            </article>
+            <article class="carousel-slide stream-slide">
+              <div class="stream-frame">
+                <video muted loop playsinline controls preload="metadata" aria-label="Gray jacket folded by hand: GenMatter inference with 2D and 3D particle and cluster views and on-screen timing">
+                  <source src="static/videos/streaming/gray_jacket_live.mp4" type="video/mp4">
+                </video>
+              </div>
+              <figcaption>Gray jacket</figcaption>
+            </article>
+            <article class="carousel-slide stream-slide">
+              <div class="stream-frame">
+                <video muted loop playsinline controls preload="metadata" aria-label="Wine swirled in a glass: GenMatter inference with 2D and 3D particle and cluster views and on-screen timing">
+                  <source src="static/videos/streaming/wine_swirl_live.mp4" type="video/mp4">
+                </video>
+              </div>
+              <figcaption>Wine swirl</figcaption>
+            </article>
+            <article class="carousel-slide stream-slide">
+              <div class="stream-frame">
+                <video muted loop playsinline controls preload="metadata" aria-label="Red jello wobbling: GenMatter inference with 2D and 3D particle and cluster views and on-screen timing">
+                  <source src="static/videos/streaming/jello_trim_live.mp4" type="video/mp4">
+                </video>
+              </div>
+              <figcaption>Red jello</figcaption>
+            </article>
+          </div>
+          <button type="button" class="carousel-arrow carousel-next" data-carousel-next aria-label="Next demo"><span aria-hidden="true">&rarr;</span></button>
+          <p class="carousel-caption">Each example pairs the RGB frame with its inferred pixel and particle labels, colored by average color and by cluster assignment, in both 2D and 3D. The 3D views are rendered from a panning camera. The on-screen readout indicates the real-time performance of the different inference stages.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="section page-section section-soft">
       <div class="container is-max-widescreen">
         <h2 class="section-title">Abstract</h2>
@@ -730,6 +784,24 @@
       previous.addEventListener('click', () => scrollBySlide(-1));
       next.addEventListener('click', () => scrollBySlide(1));
     });
+
+    // Streaming-inference carousel: play only the demo currently in view so the
+    // browser never decodes five wide videos at once (keeps mobile smooth and
+    // limits buffering of the ~30 MB set).
+    const streamTrack = document.querySelector('.stream-shell .example-carousel');
+    if (streamTrack && 'IntersectionObserver' in window) {
+      const streamObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+            entry.target.play().catch(() => {});
+          } else {
+            entry.target.pause();
+          }
+        });
+      }, { root: streamTrack, threshold: [0, 0.6, 1] });
+
+      streamTrack.querySelectorAll('video').forEach((video) => streamObserver.observe(video));
+    }
   </script>
 </body>
 </html>
