@@ -128,44 +128,67 @@
           <button type="button" class="carousel-arrow carousel-prev" data-carousel-prev aria-label="Previous demo"><span aria-hidden="true">&larr;</span></button>
           <div class="example-carousel" aria-label="GenMatter inference on streaming RGB video">
             <article class="carousel-slide stream-slide">
-              <div class="stream-frame">
-                <video autoplay muted loop playsinline controls preload="auto" aria-label="Black swan: GenMatter inference with 2D and 3D particle and cluster views and on-screen timing">
-                  <source src="static/videos/streaming/blackswan_live.mp4" type="video/mp4">
-                </video>
+              <div class="stream-stack" data-sync-group>
+                <div class="stream-pane">
+                  <span class="stream-pane-label">Pixels</span>
+                  <div class="stream-frame stream-frame-pixels">
+                    <video autoplay muted loop playsinline controls preload="auto" data-sync-master aria-label="Dog: GenMatter inference, RGB frame with inferred pixel labels and on-screen timing">
+                      <source src="static/videos/realtime/dog_pixels.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="stream-pane">
+                  <span class="stream-pane-label">Particles</span>
+                  <div class="stream-frame stream-frame-particles">
+                    <video muted loop playsinline preload="auto" aria-label="Dog: GenMatter inference, inferred particle and cluster labels in 2D and 3D">
+                      <source src="static/videos/realtime/dog_particles.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              <figcaption>Dog</figcaption>
+            </article>
+            <article class="carousel-slide stream-slide">
+              <div class="stream-stack" data-sync-group>
+                <div class="stream-pane">
+                  <span class="stream-pane-label">Pixels</span>
+                  <div class="stream-frame stream-frame-pixels">
+                    <video muted loop playsinline controls preload="metadata" data-sync-master aria-label="Horse jump: GenMatter inference, RGB frame with inferred pixel labels and on-screen timing">
+                      <source src="static/videos/realtime/horsejump-high_pixels.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="stream-pane">
+                  <span class="stream-pane-label">Particles</span>
+                  <div class="stream-frame stream-frame-particles">
+                    <video muted loop playsinline preload="metadata" aria-label="Horse jump: GenMatter inference, inferred particle and cluster labels in 2D and 3D">
+                      <source src="static/videos/realtime/horsejump-high_particles.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              <figcaption>Horse jump</figcaption>
+            </article>
+            <article class="carousel-slide stream-slide">
+              <div class="stream-stack" data-sync-group>
+                <div class="stream-pane">
+                  <span class="stream-pane-label">Pixels</span>
+                  <div class="stream-frame stream-frame-pixels">
+                    <video muted loop playsinline controls preload="metadata" data-sync-master aria-label="Black swan: GenMatter inference, RGB frame with inferred pixel labels and on-screen timing">
+                      <source src="static/videos/realtime/blackswan_pixels.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="stream-pane">
+                  <span class="stream-pane-label">Particles</span>
+                  <div class="stream-frame stream-frame-particles">
+                    <video muted loop playsinline preload="metadata" aria-label="Black swan: GenMatter inference, inferred particle and cluster labels in 2D and 3D">
+                      <source src="static/videos/realtime/blackswan_particles.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
               </div>
               <figcaption>Black swan</figcaption>
-            </article>
-            <article class="carousel-slide stream-slide">
-              <div class="stream-frame">
-                <video muted loop playsinline controls preload="metadata" aria-label="Purple jacket folded by hand: GenMatter inference with 2D and 3D particle and cluster views and on-screen timing">
-                  <source src="static/videos/streaming/purple_jacket_live.mp4" type="video/mp4">
-                </video>
-              </div>
-              <figcaption>Purple jacket</figcaption>
-            </article>
-            <article class="carousel-slide stream-slide">
-              <div class="stream-frame">
-                <video muted loop playsinline controls preload="metadata" aria-label="Gray jacket folded by hand: GenMatter inference with 2D and 3D particle and cluster views and on-screen timing">
-                  <source src="static/videos/streaming/gray_jacket_live.mp4" type="video/mp4">
-                </video>
-              </div>
-              <figcaption>Gray jacket</figcaption>
-            </article>
-            <article class="carousel-slide stream-slide">
-              <div class="stream-frame">
-                <video muted loop playsinline controls preload="metadata" aria-label="Wine swirled in a glass: GenMatter inference with 2D and 3D particle and cluster views and on-screen timing">
-                  <source src="static/videos/streaming/wine_swirl_live.mp4" type="video/mp4">
-                </video>
-              </div>
-              <figcaption>Wine swirl</figcaption>
-            </article>
-            <article class="carousel-slide stream-slide">
-              <div class="stream-frame">
-                <video muted loop playsinline controls preload="metadata" aria-label="Red jello wobbling: GenMatter inference with 2D and 3D particle and cluster views and on-screen timing">
-                  <source src="static/videos/streaming/jello_trim_live.mp4" type="video/mp4">
-                </video>
-              </div>
-              <figcaption>Red jello</figcaption>
             </article>
           </div>
           <button type="button" class="carousel-arrow carousel-next" data-carousel-next aria-label="Next demo"><span aria-hidden="true">&rarr;</span></button>
@@ -785,22 +808,59 @@
       next.addEventListener('click', () => scrollBySlide(1));
     });
 
-    // Streaming-inference carousel: play only the demo currently in view so the
-    // browser never decodes five wide videos at once (keeps mobile smooth and
-    // limits buffering of the ~30 MB set).
+    // Streaming-inference carousel: each card pairs a pixel-label video with a
+    // particle-label video that must stay frame-aligned, and only the card in
+    // view should decode (keeps mobile smooth and limits buffering).
     const streamTrack = document.querySelector('.stream-shell .example-carousel');
-    if (streamTrack && 'IntersectionObserver' in window) {
-      const streamObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
-            entry.target.play().catch(() => {});
-          } else {
-            entry.target.pause();
+    if (streamTrack) {
+      const groups = Array.from(streamTrack.querySelectorAll('[data-sync-group]'));
+
+      groups.forEach((group) => {
+        const master = group.querySelector('[data-sync-master]');
+        const followers = Array.from(group.querySelectorAll('video')).filter((v) => v !== master);
+        if (!master || !followers.length) {
+          return;
+        }
+
+        // The master drives playback; followers mirror its state and timeline so
+        // the two views never drift apart, even across loop boundaries.
+        const align = () => {
+          followers.forEach((v) => {
+            if (Math.abs(v.currentTime - master.currentTime) > 0.06) {
+              v.currentTime = master.currentTime;
+            }
+          });
+        };
+        master.addEventListener('play', () => followers.forEach((v) => { align(); v.play().catch(() => {}); }));
+        master.addEventListener('pause', () => followers.forEach((v) => v.pause()));
+        master.addEventListener('seeked', align);
+        master.addEventListener('timeupdate', align);
+      });
+
+      if ('IntersectionObserver' in window) {
+        const streamObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const master = entry.target.querySelector('[data-sync-master]');
+            if (!master) {
+              return;
+            }
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+              master.play().catch(() => {});
+            } else {
+              master.pause();
+            }
+          });
+        }, { root: streamTrack, threshold: [0, 0.6, 1] });
+
+        groups.forEach((group) => streamObserver.observe(group));
+      } else {
+        groups.forEach((group) => {
+          const master = group.querySelector('[data-sync-master]');
+          if (master) {
+            master.play().catch(() => {});
           }
         });
-      }, { root: streamTrack, threshold: [0, 0.6, 1] });
-
-      streamTrack.querySelectorAll('video').forEach((video) => streamObserver.observe(video));
+      }
     }
   </script>
 </body>

@@ -182,10 +182,34 @@ a:hover {
   text-align: center;
 }
 
+.stream-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.stream-pane-label {
+  color: var(--paper-ink);
+  display: block;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 0.35rem;
+}
+
 .stream-frame {
   aspect-ratio: 2304 / 1032;
   background: #050505;
   overflow: hidden;
+}
+
+.stream-frame-pixels {
+  aspect-ratio: 2304 / 600;
+}
+
+.stream-frame-particles {
+  aspect-ratio: 2304 / 864;
 }
 
 .stream-frame video {
