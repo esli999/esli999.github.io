@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GenMatter sees objects by working backward from a video to the matter that made it, across random dots, camouflage, and ordinary video.">
+  <title>GenMatter: Perceiving Physical Objects with Generative Matter Models</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="three-col.css">
+</head>
+<body>
+  <div class="stage">
+    <article class="board" id="board">
+      <header class="masthead">
+        <div class="brand">
+          <img class="csail" src="images/csail.png" width="1337" height="780" alt="MIT CSAIL">
+          <img class="bcs" src="images/bcs.png" width="1495" height="220" alt="MIT BCS">
+        </div>
+        <div>
+          <h1><span class="name">GenMatter:</span> Perceiving Physical Objects with Generative Matter Models</h1>
+          <p class="authors">
+            <span>Eric Li</span>
+            <span>Arijit Dasgupta</span>
+            <span>Yoni Friedman</span>
+            <span>Mathieu Huot</span>
+            <span>Vikash Mansinghka</span>
+            <span>Thomas O'Connell</span>
+            <span>William T. Freeman</span>
+            <span>Joshua B. Tenenbaum</span>
+          </p>
+          <p class="contact">
+            <a href="mailto:esli@mit.edu">esli@mit.edu</a>
+            <span aria-hidden="true"> · </span>
+            <a href="../">esli999.github.io/genmatter</a>
+          </p>
+        </div>
+        <div class="mark">
+          <img class="quest" src="images/quest.png" width="2753" height="569" alt="MIT Siegel Family Quest for Intelligence">
+          <div class="qrblock">
+            <img src="images/qr.png" width="310" height="310" alt="">
+            <p>Project page &amp; videos</p>
+          </div>
+        </div>
+      </header>
+      <hr class="rule">
+
+      <div class="cols">
+        <div class="col">
+          <section class="block">
+            <h2>Abstract</h2>
+            <p class="body"><strong>GenMatter</strong> frames perception as <strong class="k">Bayesian inference</strong> in a generative model of matter. A scene is particles grouped into clusters, recovered <strong class="k">without learning</strong>. <strong class="k">One model</strong> spans random dots, camouflage, and natural video.</p>
+          </section>
+
+          <section class="block">
+            <h2>One visual system, three worlds</h2>
+            <div class="worlds">
+              <figure>
+                <p class="stim">Random dots</p>
+                <img src="images/tw_rdk.png" width="600" height="600" alt="">
+              </figure>
+              <figure>
+                <p class="stim">Camouflage</p>
+                <img src="images/tw_camo.webp" width="600" height="600" alt="">
+              </figure>
+              <figure>
+                <p class="stim">Natural video</p>
+                <img src="images/tw_natural.webp" width="600" height="556" alt="">
+              </figure>
+            </div>
+            <p class="caption"><strong>Three worlds, one model:</strong> random dots, camouflage, and natural video.</p>
+            <figure class="fig w78">
+              <img src="images/generation.webp" width="3598" height="984" alt="">
+            </figure>
+            <p class="caption"><strong>One model, run both ways:</strong> forward, it renders a scene, and inverted, it perceives the objects.</p>
+            <ul class="points">
+              <li><strong class="k">Motion comes in rigid pieces:</strong> each object shares one rigid motion, and grouping segments that motion into objects.</li>
+              <li><strong class="k">Domain-general by construction:</strong> the same model perceives all three worlds, with no per-task training or hand-crafted regularizers.</li>
+            </ul>
+          </section>
+
+          <section class="block">
+            <h2>The generative matter model</h2>
+            <figure class="fig">
+              <img src="images/marquee.webp" width="3588" height="723" alt="">
+            </figure>
+            <p class="caption"><strong>Depth and flow</strong> lift every pixel to a moving 3D point. Perception runs that process backward.</p>
+            <ul class="points">
+              <li><strong class="k">Two-level hierarchy with slack:</strong> an object is a cluster of particles that can deviate from the cluster’s rigid motion, so one model fits both rigid and deformable objects.</li>
+              <li><strong class="k">Perception is inference:</strong> GenMatter infers the hidden objects and their motions, grouping the particles that move as one.</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="col">
+          <section class="block">
+            <h2>Random dots</h2>
+            <p class="subhead">Human object perception</p>
+            <img class="scatter" src="images/psych_scatter.png" width="590" height="901" alt="">
+            <div class="exgrid">
+                <p class="stim">Stimulus</p>
+                <p class="stim">GenMatter inference</p>
+                <img src="../static/images/rdk_examples/s1_c1.gif" width="800" height="608" alt="">
+                <video data-sync="dots" muted playsinline src="../static/videos/rdk_examples/c1_inference.mp4" width="1458" height="1132"></video>
+                <img src="../static/images/rdk_examples/s1_c2.gif" width="800" height="608" alt="">
+                <video data-sync="dots" muted playsinline src="../static/videos/rdk_examples/c2_inference.mp4" width="1458" height="1132"></video>
+              </div>
+          </section>
+        </div>
+
+        <div class="col">
+          <section class="block">
+            <h2>Camouflage</h2>
+            <figure class="fig w74">
+              <img src="images/gestalt.webp" width="3435" height="995" alt="Camouflage frames compared across depth, flow, ground truth, GenMatter, FlowSAM, and SegAnyMo">
+            </figure>
+            <p class="caption"><strong>Motion reveals 3D shape.</strong> GenMatter recovers the hidden shape and mask where trained models drift&nbsp;or&nbsp;fail.</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Metric</th>
+                    <th scope="col">SegAnyMo</th>
+                    <th scope="col">FlowSAM</th>
+                    <th scope="col">GenMatter</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Accuracy</th>
+                    <td>0.33 <span class="ci">[.28, .37]</span></td>
+                    <td>0.87 <span class="ci">[.85, .88]</span></td>
+                    <td class="best">0.94 <span class="ci">[.93, .94]</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Jaccard</th>
+                    <td>0.26 <span class="ci">[.22, .31]</span></td>
+                    <td>0.67 <span class="ci">[.63, .70]</span></td>
+                    <td class="best">0.72 <span class="ci">[.70, .74]</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="caption">Mean accuracy and Jaccard on 140 videos [95% bootstrap interval]. Higher Jaccard than FlowSAM on 111 of 140 and SegAnyMo on 133 of 140.</p>
+          </section>
+
+          <section class="block">
+            <h2>Natural video</h2>
+            <p class="row-label">Mid-level structure</p>
+            <div class="film">
+              <figure>
+                <video data-sync="animals" muted playsinline src="../static/fixed_demos_unified_updated_mid_level/dog_midlevel.mp4" width="4096" height="2304"></video>
+                <figcaption>Dog</figcaption>
+              </figure>
+              <figure>
+                <video data-sync="animals" muted playsinline src="../static/fixed_demos_unified_updated_mid_level/elephant_midlevel.mp4" width="4096" height="2304"></video>
+                <figcaption>Elephant</figcaption>
+              </figure>
+            </div>
+            <p class="caption"><strong>A bending animal stays one cluster.</strong> The particles follow the parts that bend, and the cluster remains one object.</p>
+            <p class="row-label">Novel views</p>
+            <div class="film">
+              <figure>
+                <video data-sync="animals" muted playsinline src="../static/fixed_demos_unified_updated_novel_view/dog_simplified.mp4" width="4096" height="2080"></video>
+                <figcaption>Dog</figcaption>
+              </figure>
+              <figure>
+                <video data-sync="animals" muted playsinline src="../static/fixed_demos_unified_updated_novel_view/elephant_simplified.mp4" width="4096" height="2080"></video>
+                <figcaption>Elephant</figcaption>
+              </figure>
+            </div>
+            <p class="caption"><strong>The same particles,</strong> drawn from a camera that was never there.</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Metric</th>
+                    <th scope="col">CoTracker3</th>
+                    <th scope="col">GenMatter</th>
+                    <th scope="col">Ablation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">J<sub>m</sub> (SAM)</th>
+                    <td>0.78 <span class="ci">[.69, .87]</span></td>
+                    <td>0.79 <span class="ci">[.73, .84]</span></td>
+                    <td>0.69 <span class="ci">[.61, .77]</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">J<sub>m</sub> (GT)</th>
+                    <td>0.78 <span class="ci">[.69, .87]</span></td>
+                    <td>0.77 <span class="ci">[.73, .84]</span></td>
+                    <td>0.68 <span class="ci">[.58, .73]</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="caption">Jaccard J<sub>m</sub> on TAP-Vid-DAVIS [95% bootstrap interval]. The ablation drops the object grouping.</p>
+            <ul class="points">
+              <li><strong class="k">Matches a supervised tracker, training-free:</strong> reading the 3D particles out as 2D tracks matches CoTracker3, and using fewer particles is up to 12× faster.</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+
+      <footer class="close">
+        <p><strong class="k">One model, many viewing conditions:</strong> a single probabilistic engine spans random dots, camouflage, and natural video, approaching the generality of biological vision that no single learning system has matched.</p>
+        <p><strong class="k">Bridges human vision and computer vision:</strong> object-level scene understanding emerges from structured inference.</p>
+      </footer>
+    </article>
+  </div>
+  <script>
+    (function () {
+      var board = document.getElementById("board");
+
+      function fit() {
+        var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+        board.style.transform = "translate(-50%, -50%) scale(" + s + ")";
+      }
+
+      function lock(name) {
+        var group = Array.prototype.slice.call(document.querySelectorAll('[data-sync="' + name + '"]'));
+        if (!group.length) return;
+        var leader = group[0];
+        var holding = false;
+
+        function playAll() {
+          group.forEach(function (video) {
+            var pending = video.play();
+            if (pending && pending.catch) pending.catch(function () {});
+          });
+        }
+
+        function restart() {
+          if (holding) return;
+          holding = true;
+          var left = group.length;
+          function released() {
+            left -= 1;
+            if (left > 0) return;
+            holding = false;
+            playAll();
+          }
+          group.forEach(function (video) {
+            video.pause();
+            if (video.currentTime < 0.05) {
+              released();
+              return;
+            }
+            var settled = false;
+            function finish() {
+              if (settled) return;
+              settled = true;
+              video.removeEventListener("seeked", finish);
+              released();
+            }
+            video.addEventListener("seeked", finish);
+            video.currentTime = 0;
+          });
+        }
+
+        leader.addEventListener("ended", restart);
+        leader.addEventListener("timeupdate", function () {
+          if (holding) return;
+          for (var i = 1; i < group.length; i++) {
+            var video = group[i];
+            if (video.seeking || video.readyState < 2) continue;
+            if (Math.abs(video.currentTime - leader.currentTime) > 0.12) {
+              video.currentTime = leader.currentTime;
+            }
+          }
+        });
+
+        var seen = 0;
+        function arm() {
+          seen += 1;
+          if (seen < group.length) return;
+          restart();
+        }
+        group.forEach(function (video) {
+          if (video.readyState >= 1) arm();
+          else video.addEventListener("loadedmetadata", arm, { once: true });
+        });
+      }
+
+      fit();
+      lock("animals");
+      lock("dots");
+      window.addEventListener("resize", fit);
+    })();
+  </script>
+</body>
+</html>

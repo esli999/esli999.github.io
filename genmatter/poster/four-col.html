@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GenMatter sees objects by working backward from a video to the matter that made it, across random dots, camouflage, and ordinary video.">
+  <title>GenMatter: Perceiving Physical Objects with Generative Matter Models</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="four-col.css">
+</head>
+<body>
+  <div class="stage">
+    <article class="board" id="board">
+      <header class="masthead">
+        <div class="brand">
+          <img class="csail" src="images/csail.png" width="1337" height="780" alt="MIT CSAIL">
+          <img class="bcs" src="images/bcs.png" width="1495" height="220" alt="MIT BCS">
+        </div>
+        <div>
+          <h1><span class="name">GenMatter:</span> Perceiving Physical Objects with Generative Matter Models</h1>
+          <p class="authors">
+            <span>Eric Li</span>
+            <span>Arijit Dasgupta</span>
+            <span>Yoni Friedman</span>
+            <span>Mathieu Huot</span>
+            <span>Vikash Mansinghka</span>
+            <span>Thomas O'Connell</span>
+            <span>William T. Freeman</span>
+            <span>Joshua B. Tenenbaum</span>
+          </p>
+          <p class="contact">
+            <a href="mailto:esli@mit.edu">esli@mit.edu</a>
+            <span aria-hidden="true"> · </span>
+            <a href="../">esli999.github.io/genmatter</a>
+          </p>
+        </div>
+        <div class="mark">
+          <img class="quest" src="images/quest.png" width="2753" height="569" alt="MIT Siegel Family Quest for Intelligence">
+          <div class="qrblock">
+            <img src="images/qr.png" width="310" height="310" alt="">
+            <p>Project page &amp; videos</p>
+          </div>
+        </div>
+      </header>
+      <hr class="rule">
+
+      <div class="cols">
+        <div class="col">
+          <section class="block">
+            <h2>Abstract</h2>
+            <p class="body"><strong>GenMatter</strong> frames perception as <strong class="k">Bayesian inference</strong> in a generative model of matter: a scene is particles (small Gaussians of local matter) grouped into clusters (independently moveable objects), recovered <strong class="k">without learning</strong>, through probabilistic inference. <strong class="k">One model</strong> spans random dots, camouflaged textures, and natural video, where biological vision succeeds but computer vision does not.</p>
+          </section>
+
+          <section class="block">
+            <h2>One visual system, three worlds</h2>
+            <div class="worlds">
+              <figure>
+                <p class="stim">Random dots</p>
+                <img src="images/tw_rdk.png" width="600" height="600" alt="">
+              </figure>
+              <figure>
+                <p class="stim">Camouflage</p>
+                <img src="images/tw_camo.webp" width="600" height="600" alt="">
+              </figure>
+              <figure>
+                <p class="stim">Natural video</p>
+                <img src="images/tw_natural.webp" width="600" height="556" alt="">
+              </figure>
+            </div>
+            <p class="caption"><strong>Three worlds, one model:</strong> random dots, camouflage, and natural video. Humans see the object in each. No single vision system does.</p>
+            <figure class="fig w82">
+              <img src="images/generation.webp" width="3598" height="984" alt="">
+            </figure>
+            <p class="caption"><strong>One model, run both ways:</strong> forward, it renders a scene (solid arrows), and inverted, it perceives the objects (hollow arrows).</p>
+            <ul class="points">
+              <li><strong class="k">Motion comes in rigid pieces:</strong> each object shares one rigid motion, and grouping segments that motion into objects.</li>
+              <li><strong class="k">Domain-general by construction:</strong> the same model perceives all three worlds, with no per-task training or hand-crafted regularizers.</li>
+            </ul>
+          </section>
+
+          <section class="block">
+            <h2>The generative matter model</h2>
+            <figure class="fig">
+              <img src="images/marquee.webp" width="3588" height="723" alt="">
+            </figure>
+            <p class="caption"><strong>Depth and flow</strong> lift every pixel to a moving 3D point, and perception inverts that generative process.</p>
+            <ul class="points">
+              <li><strong class="k">Two-level hierarchy with slack:</strong> an object is a cluster of particles that can deviate from the cluster’s rigid motion, so one model fits both rigid and deformable objects.</li>
+              <li><strong class="k">Perception is inference:</strong> GenMatter infers the hidden objects and their motions, grouping the particles that move as one.</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="col">
+          <section class="block">
+            <h2>Inference</h2>
+            <figure class="fig">
+              <img src="images/inference.webp" width="2385" height="636" alt="">
+            </figure>
+            <p class="caption"><strong>A training-free inference engine:</strong> feature extraction, then block-Gibbs sampling, then Bayesian filtering.</p>
+            <ul class="points">
+              <li><strong class="k">Structure makes inference tractable:</strong> conditional independence across the hierarchy lets GenMatter sample every level in parallel, so posterior inference runs online, a sweep or two per frame.</li>
+              <li><strong class="k">Deep features for structured inference:</strong> pretrained depth, flow, and DINO networks extract the features, and GenMatter’s inference groups the points into objects.</li>
+              <li><strong class="k">Training-free core:</strong> with no task-specific finetuning, a vectorized GenJAX engine runs on one L4 GPU in a few kilobytes of code.</li>
+            </ul>
+          </section>
+
+          <section class="block">
+            <h2>Human object perception</h2>
+            <div class="human">
+              <div class="pair">
+                <p class="stim">Stimulus</p>
+                <img src="../static/images/rdk_examples/s1_c1.gif" width="800" height="608" alt="">
+              </div>
+              <div class="pair">
+                <p class="stim">GenMatter inference</p>
+                <video muted playsinline autoplay loop src="../static/videos/rdk_examples/c1_inference.mp4" width="1458" height="1132"></video>
+              </div>
+              <img src="images/psych_scatter.png" width="590" height="901" alt="">
+            </div>
+            <p class="caption"><strong>150 participants</strong> judged whether two probe dots share an object across 27 kinematograms. GenMatter matches them at r<sup>2</sup> = 0.86.</p>
+            <ul class="points">
+              <li><strong class="k">Cluster grouping is essential:</strong> without the cluster layer, 5- and 500-particle variants reach only r<sup>2</sup> = 0.35 / 0.41, with learned FlowSAM at r<sup>2</sup> = 0.04, far below the full model.</li>
+              <li><strong class="k">Captures graded uncertainty:</strong> the model’s confidence tracks how often people group the dots, staying calibrated even on the hardest, most ambiguous trials.</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="col">
+          <section class="block">
+            <h2>Structure from motion in camouflage</h2>
+            <div class="stills">
+              <figure>
+                <img src="images/camo_00.webp" width="1000" height="1000" alt="">
+              </figure>
+              <figure>
+                <img src="images/camo_13.webp" width="1000" height="1000" alt="">
+              </figure>
+              <figure>
+                <img src="images/camo_22.webp" width="1000" height="1000" alt="">
+              </figure>
+            </div>
+            <p class="caption"><strong>Find the moving object:</strong> each panel is a single texture frame, where only motion reveals the hidden 3D object.</p>
+            <figure class="fig">
+              <img src="images/gestalt.webp" width="3435" height="995" alt="Camouflage frames compared across depth, flow, ground truth, GenMatter, FlowSAM, and SegAnyMo">
+            </figure>
+            <p class="caption"><strong>Motion reveals 3D shape.</strong> GenMatter recovers the hidden shape and mask where learned baselines drift or fail.</p>
+            <ul class="points">
+              <li><strong class="k">Structure from motion, not appearance:</strong> GenMatter recasts the Gestalt principle of common fate as Bayesian inference, finding objects that no appearance-based feedforward model can see.</li>
+              <li><strong class="k">Outperforms the learned baselines:</strong> higher Jaccard than FlowSAM on 111 of 140 videos and SegAnyMo on 133 of 140, even with depth ablated and motion as the only cue.</li>
+            </ul>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Metric</th>
+                    <th scope="col">SegAnyMo</th>
+                    <th scope="col">FlowSAM</th>
+                    <th scope="col">GenMatter</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Accuracy</th>
+                    <td>0.33 <span class="ci">[.28, .37]</span></td>
+                    <td>0.87 <span class="ci">[.85, .88]</span></td>
+                    <td class="best">0.94 <span class="ci">[.93, .94]</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Jaccard</th>
+                    <td>0.26 <span class="ci">[.22, .31]</span></td>
+                    <td>0.67 <span class="ci">[.63, .70]</span></td>
+                    <td class="best">0.72 <span class="ci">[.70, .74]</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="caption">Mean accuracy and Jaccard [95% bootstrap CI]: GenMatter is highest and tightest on both.</p>
+            <figure class="fig w72">
+              <img src="images/gestalt_dist.png" width="1233" height="546" alt="">
+            </figure>
+          </section>
+        </div>
+
+        <div class="col">
+          <section class="block">
+            <h2>3D particles from natural video</h2>
+            <figure class="fig w94">
+              <img src="images/jello.webp" width="1500" height="788" alt="">
+            </figure>
+            <p class="caption"><strong>A deforming jello cube:</strong> velocity slack lets the particles follow the bits of jello deformed by the collision, while the cluster stays one object.</p>
+            <figure class="fig w94">
+              <img src="images/gallery.webp" width="2400" height="1086" alt="">
+            </figure>
+            <p class="caption"><strong>Deformable, weakly textured objects:</strong> input frames (top) and the inferred object clusters (bottom).</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Metric</th>
+                    <th scope="col">CoTracker3</th>
+                    <th scope="col">GenMatter</th>
+                    <th scope="col">Ablation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">J<sub>m</sub> (SAM)</th>
+                    <td>0.78 <span class="ci">[.69, .87]</span></td>
+                    <td>0.79 <span class="ci">[.73, .84]</span></td>
+                    <td>0.69 <span class="ci">[.61, .77]</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">J<sub>m</sub> (GT)</th>
+                    <td>0.78 <span class="ci">[.69, .87]</span></td>
+                    <td>0.77 <span class="ci">[.73, .84]</span></td>
+                    <td>0.68 <span class="ci">[.58, .73]</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="caption">Jaccard J<sub>m</sub> on TAP-Vid-DAVIS [95% bootstrap CI]. The ablation drops the cluster hierarchy and falls well short.</p>
+            <ul class="points">
+              <li><strong class="k">Matches a supervised tracker, training-free:</strong> projecting inferred 3D particles to 2D reaches CoTracker3’s DAVIS accuracy, and its probabilistic model exposes a speed–accuracy design space, up to 12× faster by subsampling.</li>
+            </ul>
+          </section>
+
+          <section class="block">
+            <h2>Conclusion</h2>
+            <ul class="points">
+              <li><strong class="k">One model, many viewing conditions:</strong> a single probabilistic engine spans random dots, camouflage, and natural video, approaching the generality of biological vision that no single learning system has matched.</li>
+              <li><strong class="k">Bridges human vision and computer vision:</strong> object-level scene understanding emerges from structured inference.</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </article>
+  </div>
+  <script>
+    (function () {
+      var board = document.getElementById("board");
+      function fit() {
+        var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+        board.style.transform = "translate(-50%, -50%) scale(" + s + ")";
+      }
+      fit();
+      window.addEventListener("resize", fit);
+      var clip = document.querySelector("video");
+      if (clip) {
+        var pending = clip.play();
+        if (pending && pending.catch) pending.catch(function () {});
+      }
+    })();
+  </script>
+</body>
+</html>
